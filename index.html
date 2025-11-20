@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>5ª Ação Entre Amigos — Doe brinquedos ou Pix</title>
+  <meta name="description" content="5ª Ação Entre Amigos — Doe brinquedos ou Pix para levar alegria a muitas crianças neste fim de ano. Pix: 41995756812 (Alecio Camargo).">
+  <meta name="keywords" content="doação, brinquedos, pix, caridade, crianças, ação entre amigos">
+  <link rel="canonical" href="https://example.org/acao-entre-amigos">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="5ª Ação Entre Amigos" />
+  <meta property="og:description" content="Doe brinquedos ou Pix e ajude a levar alegria a muitas crianças neste fim de ano." />
+  <meta property="og:image" content="/assets/hero.jpg" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- JSON-LD structured data for SEO (Organization/Event) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "5ª Ação Entre Amigos",
+    "description": "Doe brinquedos ou Pix e ajude a levar alegria a muitas crianças neste fim de ano.",
+    "startDate": "2025-12-10",
+    "location": {"@type": "Place","name": "Campanha Local / Pontos de Coleta"}
+  }
+  </script>
+
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <h1 class="brand">Ação Entre Amigos</h1>
+      <nav class="main-nav" aria-label="Menu principal">
+        <button id="btn-menu" aria-expanded="false">Menu</button>
+        <ul id="nav-list">
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#doe">Doações</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" role="banner" aria-label="Ação Entre Amigos">
+      <div class="overlay"></div>
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <h2>É com muita alegria que damos início</h2>
+          <h3>5ª Ação Entre Amigos</h3>
+          <p>Doe brinquedos ou Pix e ajude a levar alegria a muitas crianças neste fim de ano!</p>
+          <div class="pix-card">
+            <p class="pix-label">Pix:</p>
+            <p id="pix-value" class="pix-value">41995756812</p>
+            <p class="pix-owner">Alecio Camargo</p>
+            <div class="pix-actions">
+              <button id="btn-copy">Copiar Pix</button>
+              <button id="btn-open-form">Quero doar</button>
+            </div>
+          </div>
+        </div>
+        <div class="hero-image" aria-hidden="true">
+          <picture>
+            <source srcset="assets/hero-1200.webp 1200w, assets/hero-800.webp 800w" type="image/webp">
+            <source srcset="assets/hero-1200.jpg 1200w, assets/hero-800.jpg 800w" type="image/jpeg">
+            <img src="assets/hero-800.jpg" alt="Cartaz da ação: doação de brinquedos e Pix" loading="lazy" decoding="async" />
+          </picture>
+        </div>
+      </div>
+    </section>
+
+    <section id="sobre" class="container about">
+      <h3>Sobre a Ação</h3>
+      <p>Estamos na 5ª edição da Ação Entre Amigos. A campanha recolhe brinquedos e doações em dinheiro para distribuir sorrisos no final do ano. Sua doação faz diferença!</p>
+    </section>
+
+    <section id="doe" class="container donate">
+      <h3>Doações</h3>
+      <div class="donate-grid">
+        <div class="donate-item">
+          <h4>Doação de brinquedos (ampliado)</h4>
+          <p>Obrigado por querer participar! Veja abaixo orientações para que suas doações cheguem com segurança e alegria às crianças:</p>
+          <ul>
+            <li><strong>Que tipo de brinquedos:</strong> brinquedos educativos, livros infantis, jogos de tabuleiro, bonecas, carrinhos e material esportivo.</li>
+            <li><strong>Idades:</strong> organizamos por faixas: 0–3, 4–7, 8–12 e 13+ — por favor identifique a faixa na embalagem.</li>
+            <li><strong>Conservação:</strong> preferimos brinquedos em bom estado, limpos e com pilhas removidas. Brinquedos quebrados não serão aceitos.</li>
+            <li><strong>Embalagem e segurança:</strong> não inclua pequenos itens que possam ser engolidos para crianças menores; embale separadamente por faixa etária.</li>
+            <li><strong>Presentes novos:</strong> se possível, inclua um pequeno cartão com idade recomendada (isso ajuda na triagem).</li>
+            <li><strong>Doação em grupo/empresa:</strong> se sua empresa quiser fazer uma arrecadação, podemos apoiar na logística e divulgação — entre em contato.</li>
+          </ul>
+          <h5>Pontos de entrega</h5>
+          <p>Fique atento aos pontos de coleta oficiais que divulgaremos nas redes sociais e no e-mail de contato. Se preferir, solicite coleta no link abaixo.</p>
+          <div class="toy-actions">
+            <button id="btn-solicitar-coleta">Solicitar coleta</button>
+            <a href="#contato" class="btn-link">Ver contato</a>
+          </div>
+        </div>
+
+        <div class="donate-item">
+          <h4>Formulário de Doação</h4>
+          <form id="donation-form" action="submit.php" method="post">
+            <label for="name">Nome</label>
+            <input id="name" name="name" required>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email">
+            <label for="message">Mensagem (opcional)</label>
+            <textarea id="message" name="message" rows="3" placeholder="Ex.: Gostaria de agendar coleta para 20/12, bairro X."></textarea>
+            <label for="amount">Valor (opcional)</label>
+            <input id="amount" name="amount" type="number" step="0.01" min="0">
+            <button type="submit">Enviar Doação / Avisar Ponto de Coleta</button>
+            <div id="form-status" role="status" aria-live="polite"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="contato" class="container contact">
+      <h3>Contato</h3>
+      <p>Para dúvidas e pontos de coleta, envie mensagem: <a href="mailto:contato@example.org">contato@example.org</a></p>
+    </section>
+
+    <section class="container gallery">
+      <h3>Imagens de edições anteriores</h3>
+      <div class="gallery-grid">
+        <!-- coloque imagens em assets/ com nomes img1.jpg ... img9.jpg e rode o script de otimização -->
+        <figure><picture><source srcset="assets/img1.webp" type="image/webp"><img src="assets/img1.jpg" alt="Edição anterior 1" loading="lazy"></picture></figure>
+        <figure><picture><source srcset="assets/img2.webp" type="image/webp"><img src="assets/img2.jpg" alt="Edição anterior 2" loading="lazy"></picture></figure>
+        <figure><picture><source srcset="assets/img3.webp" type="image/webp"><img src="assets/img3.jpg" alt="Edição anterior 3" loading="lazy"></picture></figure>
+        <figure><picture><source srcset="assets/img4.webp" type="image/webp"><img src="assets/img4.jpg" alt="Edição anterior 4" loading="lazy"></picture></figure>
+        <figure><picture><source srcset="assets/img5.webp" type="image/webp"><img src="assets/img5.jpg" alt="Edição anterior 5" loading="lazy"></picture></figure>
+        <figure><picture><source srcset="assets/img6.webp" type="image/webp"><img src="assets/img6.jpg" alt="Edição anterior 6" loading="lazy"></picture></figure>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> Ação Entre Amigos — Todos os direitos reservados</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
