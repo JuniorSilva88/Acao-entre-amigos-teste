@@ -80,6 +80,11 @@ form button{margin-top:1rem;background:var(--primary);color:#fff;border:0;paddin
 .qr-content h4{margin:0 0 0.6rem}
 .qr-content p{margin:0.4rem 0 0;color:var(--muted)}
 
+/* Button variant for external actions (WhatsApp) */
+.btn{display:inline-block;background:#25D366;color:#fff;padding:0.6rem 0.9rem;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 6px 18px rgba(37,211,102,0.14)}
+.btn:hover{filter:brightness(.95)}
+.pix-extra{margin-top:0.6rem}
+
 .site-footer{padding:1.2rem 0;text-align:center;color:var(--muted);background:linear-gradient(180deg,#fff7ea,transparent)}
 
 /* Gallery styles */
