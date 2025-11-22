@@ -73,7 +73,9 @@ def process_image(path, outdir, sizes=(800, 1200), quality=80, skip_jpg=False):
                 print(f"Pulando (já existe): {out_jpg}")
             else:
                 try:
-                    im2.save(out_jpg, 'JPEG', quality=85, optimize=True, progressive=True)
+                    # JPEG não suporta alfa — converter para RGB antes de salvar
+                    im_jpg = im2.convert("RGB")
+                    im_jpg.save(out_jpg, 'JPEG', quality=85, optimize=True, progressive=True)
                     print(f"Gerado: {out_jpg}")
                 except Exception as e:
                     print(f"Erro salvando {out_jpg}: {e}")
