@@ -55,3 +55,27 @@ document.addEventListener('DOMContentLoaded', function(){
   // fill year
   const year = document.getElementById('year'); if(year) year.textContent = new Date().getFullYear();
 });
+
+// QR modal handlers
+document.addEventListener('DOMContentLoaded', function(){
+  const btnShow = document.getElementById('btn-show-qr');
+  const modal = document.getElementById('qr-modal');
+  const btnClose = document.getElementById('btn-close-qr');
+  const backdrop = modal && modal.querySelector('.qr-backdrop');
+  function openModal(){
+    if(!modal) return;
+    modal.hidden = false;
+    modal.setAttribute('aria-hidden','false');
+    // focus close button
+    if(btnClose) btnClose.focus();
+  }
+  function closeModal(){
+    if(!modal) return;
+    modal.hidden = true;
+    modal.setAttribute('aria-hidden','true');
+  }
+  if(btnShow) btnShow.addEventListener('click', openModal);
+  if(btnClose) btnClose.addEventListener('click', closeModal);
+  if(backdrop) backdrop.addEventListener('click', closeModal);
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape'){ closeModal(); } });
+});

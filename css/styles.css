@@ -70,6 +70,16 @@ form button{margin-top:1rem;background:var(--primary);color:#fff;border:0;paddin
 .toy-actions{display:flex;gap:0.75rem;margin-top:0.6rem}
 .toy-actions .btn-link{align-self:center}
 
+/* QR modal */
+.qr-modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:1000}
+.qr-modal[hidden]{display:none}
+.qr-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.45)}
+.qr-content{position:relative;background:#fff;border-radius:12px;padding:1rem 1.25rem;max-width:420px;width:92%;box-shadow:0 20px 60px rgba(0,0,0,0.25);z-index:1001;text-align:center}
+.qr-content img{max-width:260px;width:80%;height:auto;display:block;margin:0.5rem auto;border-radius:8px}
+.qr-close{position:absolute;top:8px;right:10px;background:transparent;border:0;font-size:1.1rem;cursor:pointer;padding:6px}
+.qr-content h4{margin:0 0 0.6rem}
+.qr-content p{margin:0.4rem 0 0;color:var(--muted)}
+
 .site-footer{padding:1.2rem 0;text-align:center;color:var(--muted);background:linear-gradient(180deg,#fff7ea,transparent)}
 
 /* Gallery styles */
