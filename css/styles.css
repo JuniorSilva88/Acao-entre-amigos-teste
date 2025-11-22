@@ -67,8 +67,19 @@ form button{margin-top:0.8rem;background:var(--primary);color:#fff;border:0;padd
 .site-footer{padding:1.2rem 0;text-align:center;color:var(--muted);background:linear-gradient(180deg,#fff7ea,transparent)}
 
 /* Gallery styles */
-.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.6rem;margin-top:1rem}
-.gallery-grid img{width:100%;height:160px;object-fit:cover;border-radius:8px}
+.gallery-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0.8rem;
+  margin-top: 1rem;
+  align-items: stretch;
+}
+.gallery-grid img{
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 10px;
+}
 .gallery figure{margin:0}
 
 /* Patrocinadores */
