@@ -1,0 +1,16 @@
+# Python virtual environment
+.venv/
+
+# Bytecode
+__pycache__/
+*.py[cod]
+
+# Tests / temp assets
+tests_assets/
+
+# OS files
+.DS_Store
+
+# Editor backups
+*~
+.vscode/
