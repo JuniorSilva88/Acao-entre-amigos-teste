@@ -6,12 +6,12 @@
   <title>5ª Ação Entre Amigos — Doe brinquedos ou Pix</title>
   <meta name="description" content="5ª Ação Entre Amigos — Doe brinquedos ou Pix para levar alegria a muitas crianças neste fim de ano. Pix: 41995756812 (Alecio Camargo).">
   <meta name="keywords" content="doação, brinquedos, pix, caridade, crianças, ação entre amigos">
-  <link rel="canonical" href="https://example.org/acao-entre-amigos">
+  <link rel="canonical" href="https://acaoentreamigos.netlify.app/">
 
   <!-- Open Graph -->
   <meta property="og:title" content="5ª Ação Entre Amigos" />
   <meta property="og:description" content="Doe brinquedos ou Pix e ajude a levar alegria a muitas crianças neste fim de ano." />
-  <meta property="og:image" content="/assets/hero.jpg" />
+  <meta property="og:image" content="https://acaoentreamigos.netlify.app/assets/hero.jpg" />
   <meta property="og:type" content="website" />
 
   <!-- Twitter Card -->
@@ -40,7 +40,7 @@
     <div class="container header-inner">
       <h1 class="brand">Ação Entre Amigos</h1>
       <nav class="main-nav" aria-label="Menu principal">
-        <button id="btn-menu" aria-expanded="false">Menu</button>
+        <button id="btn-menu" aria-expanded="false" aria-controls="nav-list">Menu</button>
         <ul id="nav-list">
           <li><a href="#sobre">Sobre</a></li>
           <li><a href="#doe">Doações</a></li>
@@ -109,7 +109,7 @@
           <h4>Formulário de Doação</h4>
           <form id="donation-form" action="submit.php" method="post">
             <label for="name">Nome</label>
-            <input id="name" name="name" required>
+            <input id="name" name="name" type="text" required>
             <label for="email">Email</label>
             <input id="email" name="email" type="email">
             <label for="message">Mensagem (opcional)</label>

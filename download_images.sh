@@ -4,6 +4,11 @@ set -euo pipefail
 # Script para baixar imagens públicas do site https://acaoentreamigos.netlify.app
 # Ajuste a lista de URLs se algum arquivo mudar no site de origem.
 
+command -v curl >/dev/null 2>&1 || command -v wget >/dev/null 2>&1 || {
+  echo "Erro: é necessário ter curl ou wget instalado." >&2
+  exit 1
+}
+
 mkdir -p assets
 
 declare -a urls=(
@@ -30,6 +35,11 @@ declare -a urls=(
 echo "Baixando imagens para assets/ ..."
 for url in "${urls[@]}"; do
   fname=$(basename "$url")
+  if [[ -f "$out" ]]; then
+  echo "Já existe: $fname (pulando)"
+  continue
+fi
+
   out=assets/$fname
   echo "-> $fname"
   curl -fsSL "$url" -o "$out" || wget -q -O "$out" "$url" || echo "Falha ao baixar $url"

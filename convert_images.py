@@ -59,7 +59,10 @@ def process_image(path, outdir, sizes=(800, 1200), quality=80, skip_jpg=False):
             print(f"Pulando (já existe): {out_webp}")
         else:
             try:
-                im2.save(out_webp, 'WEBP', quality=quality, method=6)
+                if im2.mode in ("RGBA","LA"):
+                     im2.save(out_webp, 'WEBP', quality=quality, method=6, lossless=False)
+                else:
+                     im2.save(out_webp, 'WEBP', quality=quality, method=6)
                 print(f"Gerado: {out_webp}")
             except Exception as e:
                 print(f"Erro salvando {out_webp}: {e}")
@@ -70,7 +73,7 @@ def process_image(path, outdir, sizes=(800, 1200), quality=80, skip_jpg=False):
                 print(f"Pulando (já existe): {out_jpg}")
             else:
                 try:
-                    im2.save(out_jpg, 'JPEG', quality=85)
+                    im2.save(out_jpg, 'JPEG', quality=85, optimize=True, progressive=True)
                     print(f"Gerado: {out_jpg}")
                 except Exception as e:
                     print(f"Erro salvando {out_jpg}: {e}")

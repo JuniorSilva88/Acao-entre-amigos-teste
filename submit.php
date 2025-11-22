@@ -14,7 +14,14 @@ if($_SERVER['REQUEST_METHOD'] !== 'POST'){
 $name = isset($_POST['name']) ? strip_tags(trim($_POST['name'])) : '';
 $email = isset($_POST['email']) ? filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL) : '';
 $message = isset($_POST['message']) ? strip_tags(trim($_POST['message'])) : '';
+if(strlen($message) > 500){
+    send_json(false,'Mensagem muito longa');
+}
 $amount = isset($_POST['amount']) ? trim($_POST['amount']) : '';
+if(!empty($amount) && !is_numeric($amount)){
+    send_json(false,'Valor inválido');
+}
+
 
 if(empty($name)){
     send_json(false,'Nome é obrigatório');
@@ -26,7 +33,14 @@ if(!is_dir($dataDir)){
     @mkdir($dataDir,0755,true);
 }
 $file = $dataDir . '/submissions.csv';
-$line = [date('c'), $name, $email, $amount, $message];
+function sanitize_csv($value){
+    if(preg_match('/^[=\+\-@]/', $value)){
+        return "'".$value;
+    }
+    return $value;
+}
+$line = array_map('sanitize_csv', [date('c'), $name, $email, $amount, $message]);
+
 try{
     $fp = fopen($file,'a');
     if($fp){
