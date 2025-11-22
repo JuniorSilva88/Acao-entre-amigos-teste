@@ -130,6 +130,12 @@ form button{margin-top:1rem;background:var(--primary);color:#fff;border:0;paddin
   .sponsors-grid{grid-template-columns:repeat(2,1fr)}
 }
 
+/* Desktop: always show nav list and hide the small 'Menu' button */
+@media (min-width:701px){
+  #nav-list{display:flex !important;position:relative;background:transparent;padding:0;box-shadow:none;flex-direction:row;gap:1rem}
+  .main-nav button{display:none}
+}
+
 /* Accessibility focus visible */
 button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 

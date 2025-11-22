@@ -44,12 +44,24 @@ document.addEventListener('DOMContentLoaded', function(){
     btnMenu.addEventListener('click', ()=>{
       const expanded = btnMenu.getAttribute('aria-expanded') === 'true';
       btnMenu.setAttribute('aria-expanded', String(!expanded));
+      // also reflect state on the parent nav so CSS selectors work (.main-nav[aria-expanded])
+      const navEl = btnMenu.closest('.main-nav');
+      if(navEl) navEl.setAttribute('aria-expanded', String(!expanded));
       // Quando o atributo aria-expanded muda, o CSS controla exibição do menu
       if(navList && !expanded){
         // foco no primeiro link para acessibilidade
         const first = navList.querySelector('a'); if(first) first.focus();
       }
     })
+  }
+  // Close mobile menu when a nav link is clicked (good for single-page behaviour)
+  if(navList){
+    const links = navList.querySelectorAll('a');
+    links.forEach(l=>l.addEventListener('click', ()=>{
+      if(btnMenu){ btnMenu.setAttribute('aria-expanded','false'); }
+      const navEl = btnMenu && btnMenu.closest && btnMenu.closest('.main-nav');
+      if(navEl) navEl.setAttribute('aria-expanded','false');
+    }));
   }
 
   // fill year
