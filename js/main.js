@@ -44,8 +44,10 @@ document.addEventListener('DOMContentLoaded', function(){
     btnMenu.addEventListener('click', ()=>{
       const expanded = btnMenu.getAttribute('aria-expanded') === 'true';
       btnMenu.setAttribute('aria-expanded', String(!expanded));
-      if(navList){
-        navList.style.display = expanded ? 'none' : 'flex';
+      // Quando o atributo aria-expanded muda, o CSS controla exibição do menu
+      if(navList && !expanded){
+        // foco no primeiro link para acessibilidade
+        const first = navList.querySelector('a'); if(first) first.focus();
       }
     })
   }

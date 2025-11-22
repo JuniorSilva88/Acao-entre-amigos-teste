@@ -31,13 +31,20 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-3) Rode o script para gerar WebP e versões redimensionadas:
+3) Rode o script para gerar WebP e versões redimensionadas (agora com opções):
 
 ```bash
+# gerar as larguras padrão (800 e 1200) com qualidade 80
 python3 convert_images.py --src assets --out assets
+
+# gerar larguras customizadas e não gerar fallback JPEG
+python3 convert_images.py --src assets --out assets --sizes 600 900 1200 --skip-jpg
+
+# ajustar qualidade WebP
+python3 convert_images.py --src assets --out assets --quality 85
 ```
 
-Isso criará arquivos como `hero-800.webp`, `hero-1200.webp` e versões JPEG `hero-800.jpg` para fallback.
+O script agora preserva orientação EXIF, evita regravações quando a versão já existe e aceita múltiplas larguras e parâmetros de qualidade.
 
 Atualizações no HTML
 - `index.html` já usa elementos `<picture>` para preferir WebP quando disponível e fornecer fallback JPEG.

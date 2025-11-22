@@ -22,17 +22,38 @@ body{
 #nav-list{list-style:none;margin:0;padding:0;display:flex;gap:1rem}
 #nav-list a{text-decoration:none;color:var(--muted)}
 
+/* Menu oculto por padrão; exibido apenas quando o botão define aria-expanded="true" */
+#nav-list{display:none}
+.main-nav[aria-expanded="true"] #nav-list{display:flex}
+
+/* Layout do menu quando aberto em telas pequenas */
+.main-nav[aria-expanded="true"] #nav-list{
+  position:absolute;
+  right:1rem;
+  top:64px;
+  background:#fff;
+  padding:0.6rem;
+  border-radius:8px;
+  box-shadow:0 8px 24px rgba(0,0,0,0.08);
+  flex-direction:column;
+  gap:0.4rem;
+}
+
+/* Garantir acessibilidade visual em desktop quando aberto */
+.main-nav[aria-expanded="true"] #nav-list a{padding:0.35rem 0.6rem}
+
 .hero{position:relative;overflow:hidden;padding:2.5rem 0}
 .hero .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,107,53,0.15),rgba(255,209,102,0.06));z-index:0}
-.hero-inner{display:grid;grid-template-columns:1fr 360px;gap:1.5rem;align-items:center;position:relative;z-index:1}
-.hero-text h2{margin:0;font-size:1.1rem;color:var(--muted)}
-.hero-text h3{margin:0.2rem 0 0.6rem;font-size:2.2rem;color:var(--primary)}
-.pix-card{background:linear-gradient(180deg,#fff,#fff7ea);padding:1rem;border-radius:10px;box-shadow:0 4px 18px rgba(0,0,0,0.06);max-width:320px}
+.hero-inner{display:grid;grid-template-columns:1fr minmax(220px,360px);gap:1.5rem;align-items:center;position:relative;z-index:1}
+.hero-text h2{margin:0;font-size:1.05rem;color:var(--muted)}
+.hero-text h3{margin:0.2rem 0 0.6rem;font-size:2rem;color:var(--primary)}
+.pix-card{background:linear-gradient(180deg,#fff,#fff7ea);padding:1rem;border-radius:var(--radius);box-shadow:0 4px 18px rgba(0,0,0,0.06);max-width:320px}
 .pix-value{font-weight:700;font-size:1.2rem;color:var(--primary);margin:0}
 .pix-owner{margin:0;color:var(--muted)}
 .pix-actions{margin-top:0.6rem;display:flex;gap:0.6rem}
 .pix-actions button{background:var(--primary);color:#fff;border:0;padding:0.6rem 0.8rem;border-radius:8px;cursor:pointer;box-shadow:0 6px 18px rgba(0,119,182,0.12)}
-.hero-image img{max-width:100%;height:auto;border-radius:12px;display:block}
+.hero-image img, .hero-image picture, .hero-image source{display:block;max-width:100%}
+.hero-image img{width:100%;height:auto;object-fit:cover;border-radius:var(--radius);display:block;max-height:480px}
 
 .about,.donate,.contact{padding:2rem 0}
 .donate-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
@@ -57,7 +78,7 @@ form button{margin-top:0.8rem;background:var(--primary);color:#fff;border:0;padd
 
 /* Responsive */
 @media (max-width:1000px){
-  .hero-inner{grid-template-columns:1fr 260px}
+  .hero-inner{grid-template-columns:1fr minmax(200px,260px)}
   .donate-grid{grid-template-columns:1fr 1fr}
 }
 @media (max-width:700px){
