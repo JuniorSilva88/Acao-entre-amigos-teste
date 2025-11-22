@@ -71,6 +71,15 @@ form button{margin-top:0.8rem;background:var(--primary);color:#fff;border:0;padd
 .gallery-grid img{width:100%;height:160px;object-fit:cover;border-radius:8px}
 .gallery figure{margin:0}
 
+/* Patrocinadores */
+.sponsors{padding:2rem 0;border-top:1px dashed rgba(0,0,0,0.04);margin-top:1.2rem}
+.sponsors-intro{color:var(--muted);margin-bottom:0.8rem}
+.sponsors-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0.8rem;align-items:center}
+.sponsor-card{display:flex;flex-direction:column;align-items:center;text-decoration:none;background:#fff;padding:0.6rem;border-radius:10px;border:1px solid #f0f0f0;transition:transform .18s ease,box-shadow .18s ease;color:var(--muted)}
+.sponsor-card img{width:100%;height:80px;object-fit:contain;border-radius:6px;margin-bottom:0.5rem}
+.sponsor-name{font-size:0.95rem;color:var(--muted)}
+.sponsor-card:focus-visible,.sponsor-card:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgba(0,0,0,0.06)}
+
 /* CTA emphasis */
 .pix-card .pix-value{font-size:1.3rem}
 .pix-actions button:first-child{background:#00b4d8}
@@ -86,6 +95,7 @@ form button{margin-top:0.8rem;background:var(--primary);color:#fff;border:0;padd
   #nav-list{display:none}
   .donate-grid{grid-template-columns:1fr}
   .hero-image{order:-1}
+  .sponsors-grid{grid-template-columns:repeat(2,1fr)}
 }
 
 /* Accessibility focus visible */
