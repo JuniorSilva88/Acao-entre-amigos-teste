@@ -576,3 +576,18 @@ textarea:focus-visible {
     padding-right: 2rem;
   }
 }
+/* Ajuste de espaçamento no footer */
+footer {
+  padding: 1.5rem 1rem; /* espaçamento vertical e lateral */
+  text-align: center;
+  background: #f5f5f5;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Em telas maiores, aumenta o padding lateral */
+@media (min-width: 768px) {
+  footer {
+    padding: 2rem 2rem;
+  }
+}
