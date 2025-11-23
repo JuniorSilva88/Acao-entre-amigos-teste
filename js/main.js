@@ -1,13 +1,25 @@
-// Interações: copiar Pix, enviar formulário via AJAX, atualizar ano
+// Interações: copiar Pix, abrir formulário, atualizar ano
 document.addEventListener('DOMContentLoaded', function () {
   const copyBtns = [document.getElementById('btn-copy'), document.getElementById('btn-copy-2')];
-  const pixValue = document.getElementById('pix-value').textContent.trim();
-  copyBtns.forEach(b => { if (b) b.addEventListener('click', () => { navigator.clipboard && navigator.clipboard.writeText(pixValue).then(() => { b.textContent = 'Copiado!'; setTimeout(() => b.textContent = 'Copiar Pix', 1500) }).catch(() => { prompt('Copie o Pix:', pixValue) }) }) });
+  const pixValue = document.getElementById('pix-value')?.textContent.trim();
+  copyBtns.forEach(b => {
+    if (b) {
+      b.addEventListener('click', () => {
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(pixValue).then(() => {
+            b.textContent = 'Copiado!';
+            setTimeout(() => b.textContent = 'Copiar Pix', 1500);
+          }).catch(() => { prompt('Copie o Pix:', pixValue); });
+        }
+      });
+    }
+  });
+
   // abrir/realçar o formulário ao clicar em 'Quero doar' ou 'Solicitar coleta'
   const btnOpenForm = document.getElementById('btn-open-form');
   const btnSolicitarColeta = document.getElementById('btn-solicitar-coleta');
   const scrollToForm = () => {
-    const form = document.getElementById('donation-form');
+    const form = document.querySelector('form[name="doacao"]');
     if (!form) return;
     form.scrollIntoView({ behavior: 'smooth', block: 'center' });
     const name = document.getElementById('name'); if (name) name.focus();
@@ -19,22 +31,39 @@ document.addEventListener('DOMContentLoaded', function () {
     scrollToForm();
   });
 
-  const form = document.getElementById('donation-form');
-  const status = document.getElementById('form-status');
+  // alerta estilizado de envio de formulário (Netlify Forms + SweetAlert2)
+  const form = document.querySelector('form[name="doacao"]');
   if (form) {
     form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      status.textContent = 'Enviando...';
+      e.preventDefault(); // impede recarregar a página
+
       const data = new FormData(form);
-      fetch(form.action, { method: 'POST', body: data }).then(r => r.json()).then(res => {
-        if (res.success) {
-          status.textContent = 'Obrigado! Recebemos sua mensagem.';
-          form.reset();
-        } else {
-          status.textContent = 'Erro ao enviar. Tente novamente.';
-        }
-      }).catch(err => { status.textContent = 'Erro de rede. Tente novamente.' })
-    })
+
+      fetch("/", {
+        method: "POST",
+        body: data
+      }).then(() => {
+        Swal.fire({
+          title: 'Email enviado com sucesso!',
+          text: 'Obrigado pela sua doação. Entraremos em contato em breve.',
+          icon: 'success',
+          imageUrl: 'assets/ação-entre-amigo.png',
+          imageWidth: 80,
+          imageHeight: 80,
+          imageAlt: 'Logo da campanha',
+          confirmButtonText: 'Fechar'
+        });
+
+        form.reset();
+      }).catch(() => {
+        Swal.fire({
+          title: 'Erro!',
+          text: 'Não foi possível enviar. Tente novamente.',
+          icon: 'error',
+          confirmButtonText: 'Fechar'
+        });
+      });
+    });
   }
 
   // small menu toggle for mobile
@@ -44,17 +73,13 @@ document.addEventListener('DOMContentLoaded', function () {
     btnMenu.addEventListener('click', () => {
       const expanded = btnMenu.getAttribute('aria-expanded') === 'true';
       btnMenu.setAttribute('aria-expanded', String(!expanded));
-      // also reflect state on the parent nav so CSS selectors work (.main-nav[aria-expanded])
       const navEl = btnMenu.closest('.main-nav');
       if (navEl) navEl.setAttribute('aria-expanded', String(!expanded));
-      // Quando o atributo aria-expanded muda, o CSS controla exibição do menu
       if (navList && !expanded) {
-        // foco no primeiro link para acessibilidade
         const first = navList.querySelector('a'); if (first) first.focus();
       }
-    })
+    });
   }
-  // Close mobile menu when a nav link is clicked (good for single-page behaviour)
   if (navList) {
     const links = navList.querySelectorAll('a');
     links.forEach(l => l.addEventListener('click', () => {
@@ -65,7 +90,8 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // fill year
-  const year = document.getElementById('year'); if (year) year.textContent = new Date().getFullYear();
+  const year = document.getElementById('year');
+  if (year) year.textContent = new Date().getFullYear();
 });
 
 // QR modal handlers
@@ -78,7 +104,6 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!modal) return;
     modal.hidden = false;
     modal.setAttribute('aria-hidden', 'false');
-    // focus close button
     if (btnClose) btnClose.focus();
   }
   function closeModal() {
@@ -89,15 +114,17 @@ document.addEventListener('DOMContentLoaded', function () {
   if (btnShow) btnShow.addEventListener('click', openModal);
   if (btnClose) btnClose.addEventListener('click', closeModal);
   if (backdrop) backdrop.addEventListener('click', closeModal);
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { closeModal(); } });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { closeModal(); }
+  });
 });
 
 // Inicialização da galeria com Lightbox2
 document.addEventListener('DOMContentLoaded', function () {
   if (typeof lightbox !== "undefined") {
     lightbox.option({
-      albumLabel: "%1 de %2",       // legenda: "imagem X de Y"
-      wrapAround: true,             // permite navegar do último para o primeiro
+      albumLabel: "%1 de %2",
+      wrapAround: true,
       fadeDuration: 200,
       imageFadeDuration: 200,
       resizeDuration: 200,
