@@ -63,7 +63,7 @@
       <div class="container hero-inner">
         <div class="hero-text">
           <h2>É com muita alegria que damos início</h2>
-          <h3>5ª Ação Entre Amigos</h3>
+          <h3>5ª Ação Entre Amigos - Iluminando o Futuro!</h3>
           <p>Doe brinquedos ou Pix e ajude a levar alegria a muitas crianças neste fim de ano!</p>
           <div class="pix-card">
             <p class="pix-label">Pix:</p>
@@ -136,20 +136,27 @@
 
         <div class="donate-item">
           <h4>Formulário de Doação</h4>
-          <form id="donation-form" action="submit.php" method="post">
+          <form name="doacao" method="POST" netlify netlify-honeypot="bot-field">
             <label for="name">Nome</label>
             <input id="name" name="name" type="text" required>
+
             <label for="email">Email</label>
-            <input id="email" name="email" type="email">
+            <input id="email" name="email" type="email" required>
+
             <label for="message">Mensagem (opcional)</label>
             <textarea id="message" name="message" rows="3"
               placeholder="Ex.: Gostaria de agendar coleta para 20/12, bairro X."></textarea>
+
             <label for="amount">Valor (opcional)</label>
             <input id="amount" name="amount" type="number" step="0.01" min="0">
+
+            <!-- campo oculto para honeypot anti-spam -->
+            <input type="hidden" name="bot-field">
+
             <button type="submit">Enviar Doação / Avisar Ponto de Coleta</button>
-            <div id="form-status" role="status" aria-live="polite"></div>
           </form>
         </div>
+
       </div>
     </section>
 
