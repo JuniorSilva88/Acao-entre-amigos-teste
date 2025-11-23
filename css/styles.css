@@ -389,12 +389,33 @@ form button {
   margin-top: 0.6rem
 }
 
-.site-footer {
-  padding: 1.2rem 0;
-  text-align: center;
-  color: var(--muted);
-  background: linear-gradient(180deg, #fff7ea, transparent);
+.site-footer .footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding: 20px 0;
 }
+
+.site-footer p {
+  margin: 0;
+}
+
+.site-footer a {
+  color: #00b4d8;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+}
+
+.site-footer a:hover {
+  opacity: 0.8;
+}
+
+
 
 /* Gallery styles */
 .gallery-grid {
