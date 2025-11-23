@@ -129,7 +129,11 @@
           <p>Fique atento aos pontos de coleta oficiais que divulgaremos nas redes sociais e no e-mail de contato. Se
             preferir, solicite coleta no link abaixo.</p>
           <div class="toy-actions">
-            <button id="btn-solicitar-coleta">Solicitar coleta</button>
+            <button id="btn-solicitar-coleta"
+              onclick="document.getElementById('form-contato').scrollIntoView({ behavior: 'smooth' })">
+              Solicitar coleta
+            </button>
+
             <button id="btn-show-qr" class="btn-link" type="button">Gerar QRCode</button>
           </div>
 
