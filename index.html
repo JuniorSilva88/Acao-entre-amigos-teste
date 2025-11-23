@@ -75,7 +75,10 @@
             <p class="pix-owner">Alecio Camargo</p>
             <div class="pix-actions">
               <button id="btn-copy">Copiar Pix</button>
-              <button id="btn-open-form">Quero doar</button>
+              <button onclick="document.getElementById('form-contato').scrollIntoView({ behavior: 'smooth' })">
+                Quero doar
+              </button>
+
             </div>
             <!-- botão WhatsApp removido daqui e adicionado na seção de contato (evitar duplicação) -->
           </div>
@@ -138,7 +141,7 @@
           </div>
         </div>
 
-        <form name="contato" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <form id="form-contato" name="contato" method="POST" data-netlify="true" netlify-honeypot="bot-field">
           <!-- Campo oculto para Netlify identificar o formulário -->
           <input type="hidden" name="form-name" value="contato">
           <p style="display:none">
