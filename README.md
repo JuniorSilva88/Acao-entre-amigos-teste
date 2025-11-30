@@ -1,82 +1,126 @@
-# Ação Entre Amigos — Landing Page
+README – Ação Entre Amigos 🎁
 
-Pequeno site para a *5ª Ação Entre Amigos* (doação de brinquedos e Pix).
+🇧🇷 Português
 
-O que está incluído:
-- `index.html` — página principal com SEO e dados estruturados
-- `css/styles.css` — estilos responsivos com media queries
-- `js/main.js` — interações: copiar Pix e envio do formulário via AJAX
-- `submit.php` — handler simples em PHP que grava `data/submissions.csv` e tenta enviar um email
+📌 Sobre o Projeto
 
-Instalação / testes locais
+Este repositório contém o código da 5ª Ação Entre Amigos – Iluminando o Futuro!, uma campanha solidária que arrecada brinquedos e doações em dinheiro para levar alegria às crianças no fim de ano. O site foi desenvolvido para divulgar a ação, facilitar doações via Pix e organizar a coleta de brinquedos.
 
-1) Coloque a imagem do cartaz em `assets/hero.jpg`. Se preferir outro nome, atualize o caminho em `index.html`.
+🚀 Funcionalidades
 
-2) Inicie um servidor PHP para testar localmente:
+   . Página inicial com informações da campanha.
 
-```bash
-php -S localhost:8000
-```
+   . Botão Copiar Pix para facilitar transferências.
 
-Depois abra `http://localhost:8000` no navegador.
+   . Botões Quero doar e Solicitar coleta que direcionam ao formulário.
 
-Otimização de imagens (WebP e responsivo)
+   . Formulário integrado ao Netlify Forms para receber mensagens e solicitações.
 
-1) Coloque as imagens originais (ex.: `hero.jpg`, `img1.jpg`, ...) na pasta `assets/`.
-2) Instale dependências Python (recomendado em virtualenv):
+   . Galeria de imagens com Fancybox.
 
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-```
+   . Layout responsivo para dispositivos móveis e desktop.
 
-3) Rode o script para gerar WebP e versões redimensionadas (agora com opções):
+🛠️ Tecnologias Utilizadas
 
-```bash
-# gerar as larguras padrão (800 e 1200) com qualidade 80
-python3 convert_images.py --src assets --out assets
+   . HTML5
 
-# gerar larguras customizadas e não gerar fallback JPEG
-python3 convert_images.py --src assets --out assets --sizes 600 900 1200 --skip-jpg
+   . CSS3 (Normalize.css, estilos customizados, responsividade)
 
-# ajustar qualidade WebP
-python3 convert_images.py --src assets --out assets --quality 85
-```
+   . JavaScript (interações simples, scroll suave, copiar Pix)
 
-O script agora preserva orientação EXIF, evita regravações quando a versão já existe e aceita múltiplas larguras e parâmetros de qualidade.
+   . Netlify Forms (captura de envios)
 
-Atualizações no HTML
-- `index.html` já usa elementos `<picture>` para preferir WebP quando disponível e fornecer fallback JPEG.
-- Adicione os arquivos gerados em `assets/` e verifique as dimensões de `hero-1200.webp` para o Open Graph social.
+   . Fancybox (galeria de imagens)
 
-Download automático das imagens públicas (opcional)
-
-Eu inclui o script `download_images.sh` que baixa imagens públicas encontradas no site atual (netlify). Para usar:
-
-```bash
-chmod +x download_images.sh
-./download_images.sh
-```
-
-Depois rode `python3 convert_images.py --src assets --out assets` para gerar WebP e versões redimensionadas.
+📂 Estrutura
+    Código 
+   
+    /assets        -> images and icons
+    /css           -> styles (normalize.css, styles.css)
+    /js            -> scripts
+    index.html     -> main page
 
 
-Design e tema
-- Ajustei a paleta para um azul mais neutro/aconchegante e melhorei o destaque do CTA (botões de Pix) no `css/styles.css`.
+▶️ Como Executar
+
+1. Clone este repositório:
+  
+    bash
+
+    git clone https://github.com/JuniorSilva88/Acao-entre-amigos-teste.git
+
+2. Abra o arquivo index.html em qualquer navegador.
+
+3. Para deploy, utilize o Netlify ou outro serviço de hospedagem estática.
+
+🤝 Contribuição
+
+   . Faça um fork do projeto.
+
+   . Crie uma branch para sua feature: git checkout -b minha-feature.
+
+   . Commit suas alterações: git commit -m "feat: minha feature".
+
+   . Envie um pull request.
+
+🇺🇸 English
+
+📌 About the Project
+
+This repository hosts the code for the 5th Friends Action – Lighting the Future!, a charity campaign that collects toys and monetary donations to bring joy to children at the end of the year. The website was built to promote the campaign, enable donations via Pix, and organize toy collection.
+
+🚀 Features
+
+   . Homepage with campaign information.
+
+   . Copy Pix button for easy transfers.
+
+   . Donate and Request Pickup buttons that scroll to the form.
+
+   . Form integrated with Netlify Forms to receive messages and requests.
+
+   . Image gallery powered by Fancybox.
+
+   . Responsive layout for mobile and desktop.
+
+🛠️ Technologies Used
+
+  . HTML5
+
+  . CSS3 (Normalize.css, custom styles, responsive design)
+
+  . JavaScript (basic interactions, smooth scroll, copy Pix)
+
+  . Netlify Forms (form submissions)
+
+  . Fancybox (image gallery)
+
+📂 Structure
+
+Código
+
+    /assets        -> images and icons
+    /css           -> styles (normalize.css, styles.css)
+    /js            -> scripts
+    index.html     -> main page
+
+▶️ How to Run
+
+  1. Clone this repository:
+
+    git clone https://github.com/JuniorSilva88/Acao-entre-amigos-teste.git
+
+  2. Open the index.html file in any browser.
+
+  3. For deployment, use Netlify or any static hosting service.
 
 
-Notas de deploy
-- O `submit.php` grava em `data/submissions.csv`. Garanta permissão de escrita (ex.: `chmod -R 755 data`).
-- Se for hospedar em ambiente sem PHP, posso converter o handler para Python (Flask) ou usar um serviço externo (Formspree, Netlify Forms).
+🤝 Contributing
 
-SEO e performance
-- `index.html` já inclui meta tags, Open Graph e JSON-LD. Atualize `canonical`, `og:image` e o `startDate` conforme necessário.
-- Minify JS/CSS e habilite cache no servidor para produção.
+  . Fork the project.
 
-Próximos passos que posso fazer:
-- Adicionar animações leves e otimizações de imagem (WebP)
-- Implementar versão em Python/Flask em vez de PHP
-- Criar workflow CI simples para deploy
+  . Create a branch for your feature: git checkout -b my-feature.
 
-Diga como quer prosseguir: ajustar layout, cores, ou eu gero a versão Python/Flask.
+  . Commit your changes: git commit -m "feat: my feature".
+
+  . Submit a pull request.
