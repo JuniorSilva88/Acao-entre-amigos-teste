@@ -45,8 +45,6 @@ Este repositório contém o código da 5ª Ação Entre Amigos – Iluminando o 
 
 1. Clone este repositório:
   
-    bash
-
     git clone https://github.com/JuniorSilva88/Acao-entre-amigos-teste.git
 
 2. Abra o arquivo index.html em qualquer navegador.
