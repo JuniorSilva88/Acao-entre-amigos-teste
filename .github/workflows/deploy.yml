@@ -3,7 +3,7 @@ name: Deploy via FTP
 on:
   push:
     branches:
-      - main  # ou a branch que você usa
+      - master   # sua branch atual
 
 jobs:
   deploy:
