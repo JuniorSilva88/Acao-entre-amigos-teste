@@ -6,7 +6,7 @@
 
 **Ação Beneficente – Iluminando o Futuro**  
 
-🔗 Link: [https://iluminandofuturo.netlify.app/](https://iluminandofuturo.netlify.app/)
+🔗 Link: [https://iluminandofuturos.com.br/](https://iluminandofuturos.com.br/)
 
 
 
