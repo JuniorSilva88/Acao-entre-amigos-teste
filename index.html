@@ -149,13 +149,7 @@
           </div>
         </div>
 
-        <form id="form-contato" name="contato" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-          <!-- Campo oculto para Netlify identificar o formulário -->
-          <input type="hidden" name="form-name" value="contato">
-          <p style="display:none">
-            <label>Não preencha este campo: <input name="bot-field"></label>
-          </p>
-
+        <form id="form-contato" action="sendmail.php" method="POST">
           <label for="nome">Nome</label>
           <input type="text" id="nome" name="nome" required>
 
@@ -167,6 +161,7 @@
 
           <button type="submit">Enviar</button>
         </form>
+
 
 
       </div>
