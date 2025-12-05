@@ -18,7 +18,7 @@ try {
     $mail->Host = 'smtp.iluminandofuturos.com.br';
     $mail->SMTPAuth = true;
     $mail->Username = 'contato@iluminandofuturos.com.br'; // seu e-mail
-    $mail->Password = 'SUA_SENHA_AQUI'; // senha definida
+    $mail->Password = 'Acao2021@'; // senha definida
     $mail->SMTPSecure = 'tls';
     $mail->Port = 587;
 
