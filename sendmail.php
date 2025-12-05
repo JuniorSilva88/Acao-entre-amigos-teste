@@ -8,6 +8,11 @@ require 'phpmailer/src/SMTP.php';
 
 $mail = new PHPMailer(true);
 
+// Ativar debug detalhado
+$mail->SMTPDebug = 2; // Mostra mensagens de debug no navegador
+$mail->Debugoutput = 'html'; // Formata a saída em HTML
+
+
 try {
     $mail->isSMTP();
     $mail->Host = 'smtp.iluminandofuturos.com.br';
