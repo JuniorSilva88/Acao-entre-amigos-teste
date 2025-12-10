@@ -148,20 +148,24 @@
             </div>
           </div>
         </div>
-        <form id="form-contato" action="sendmail.php" method="POST">
-          <label for="nome">Nome</label>
-          <input type="text" id="nome" name="nome" required>
 
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" required>
-
-          <label for="mensagem">Mensagem</label>
-          <textarea id="mensagem" name="mensagem" required></textarea>
-
+        <form id="form-doacao" action="https://formsubmit.co/contato@iluminandofuturos.com.br" method="POST">
+          <input type="text" name="nome" placeholder="Seu nome" required>
+          <input type="email" name="email" placeholder="Seu e‑mail" required>
+          <textarea name="mensagem" placeholder="Mensagem" required></textarea>
           <button type="submit">Enviar</button>
+
+          <!-- Configurações extras -->
+          <input type="hidden" name="_captcha" value="false">
         </form>
 
-
+        <!-- Popup -->
+        <div id="popup">
+          <div class="content">
+            <h3>Obrigado!</h3>
+            <p>Recebemos sua mensagem com sucesso.</p>
+          </div>
+        </div>
 
       </div>
     </section>
