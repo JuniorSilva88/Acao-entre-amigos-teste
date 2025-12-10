@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
     scrollToForm();
   });
 
-  // alerta estilizado de envio de formulário (PHP + SweetAlert2)
+  // envio de formulário (PHP + SweetAlert2)
   const form = document.querySelector('form[name="doacao"]');
   if (form) {
     form.addEventListener('submit', function (e) {
@@ -39,28 +39,37 @@ document.addEventListener('DOMContentLoaded', function () {
 
       const data = new FormData(form);
 
-      fetch("sendmail.php", {   // <<< aqui chamamos o PHP
+      fetch("sendmail.php", {
         method: "POST",
         body: data
       })
-        .then(response => response.text())
+        .then(response => response.json())
         .then(result => {
-          Swal.fire({
-            title: 'Email enviado com sucesso!',
-            text: 'Obrigado pela sua doação. Entraremos em contato em breve.',
-            icon: 'success',
-            imageUrl: 'assets/ação-entre-amigo.png',
-            imageWidth: 80,
-            imageHeight: 80,
-            imageAlt: 'Logo da campanha',
-            confirmButtonText: 'Fechar'
-          });
-          form.reset();
+          if (result.status === "ok") {
+            Swal.fire({
+              title: 'Email enviado com sucesso!',
+              text: 'Obrigado pela sua doação. Entraremos em contato em breve.',
+              icon: 'success',
+              imageUrl: 'assets/ação-entre-amigo.png',
+              imageWidth: 80,
+              imageHeight: 80,
+              imageAlt: 'Logo da campanha',
+              confirmButtonText: 'Fechar'
+            });
+            form.reset();
+          } else {
+            Swal.fire({
+              title: 'Erro!',
+              text: 'Não foi possível enviar: ' + (result.message || ''),
+              icon: 'error',
+              confirmButtonText: 'Fechar'
+            });
+          }
         })
         .catch(error => {
           Swal.fire({
             title: 'Erro!',
-            text: 'Não foi possível enviar. Tente novamente.',
+            text: 'Falha na conexão com o servidor.',
             icon: 'error',
             confirmButtonText: 'Fechar'
           });
@@ -69,34 +78,32 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-}
-
   // small menu toggle for mobile
   const btnMenu = document.getElementById('btn-menu');
-const navList = document.getElementById('nav-list');
-if (btnMenu) {
-  btnMenu.addEventListener('click', () => {
-    const expanded = btnMenu.getAttribute('aria-expanded') === 'true';
-    btnMenu.setAttribute('aria-expanded', String(!expanded));
-    const navEl = btnMenu.closest('.main-nav');
-    if (navEl) navEl.setAttribute('aria-expanded', String(!expanded));
-    if (navList && !expanded) {
-      const first = navList.querySelector('a'); if (first) first.focus();
-    }
-  });
-}
-if (navList) {
-  const links = navList.querySelectorAll('a');
-  links.forEach(l => l.addEventListener('click', () => {
-    if (btnMenu) { btnMenu.setAttribute('aria-expanded', 'false'); }
-    const navEl = btnMenu && btnMenu.closest && btnMenu.closest('.main-nav');
-    if (navEl) navEl.setAttribute('aria-expanded', 'false');
-  }));
-}
+  const navList = document.getElementById('nav-list');
+  if (btnMenu) {
+    btnMenu.addEventListener('click', () => {
+      const expanded = btnMenu.getAttribute('aria-expanded') === 'true';
+      btnMenu.setAttribute('aria-expanded', String(!expanded));
+      const navEl = btnMenu.closest('.main-nav');
+      if (navEl) navEl.setAttribute('aria-expanded', String(!expanded));
+      if (navList && !expanded) {
+        const first = navList.querySelector('a'); if (first) first.focus();
+      }
+    });
+  }
+  if (navList) {
+    const links = navList.querySelectorAll('a');
+    links.forEach(l => l.addEventListener('click', () => {
+      if (btnMenu) { btnMenu.setAttribute('aria-expanded', 'false'); }
+      const navEl = btnMenu && btnMenu.closest && btnMenu.closest('.main-nav');
+      if (navEl) navEl.setAttribute('aria-expanded', 'false');
+    }));
+  }
 
-// fill year
-const year = document.getElementById('year');
-if (year) year.textContent = new Date().getFullYear();
+  // fill year
+  const year = document.getElementById('year');
+  if (year) year.textContent = new Date().getFullYear();
 });
 
 // QR modal handlers

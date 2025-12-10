@@ -6,30 +6,27 @@ require 'phpmailer/src/Exception.php';
 require 'phpmailer/src/PHPMailer.php';
 require 'phpmailer/src/SMTP.php';
 
+header('Content-Type: application/json'); // resposta em JSON
+
 $mail = new PHPMailer(true);
 
 try {
-    $mail->SMTPDebug = 2; // Ativar debug para ver logs
-    $mail->Debugoutput = 'html';
-
     $mail->isSMTP();
-    $mail->Host = 'smtp.locaweb.com.br'; // teste com este host
+    $mail->Host = 'smtp.locaweb.com.br';
     $mail->SMTPAuth = true;
     $mail->Username = 'contato@iluminandofuturos.com.br';
-    $mail->Password = 'Acao2021@'; // senha atual
+    $mail->Password = 'Acao2021@';
     $mail->SMTPSecure = 'tls';
     $mail->Port = 587;
 
-    // remetente fixo
     $mail->setFrom('contato@iluminandofuturos.com.br', 'Site Iluminando Futuros');
-    // destinatário
     $mail->addAddress('contato@iluminandofuturos.com.br');
     $mail->Subject = 'Novo contato do site';
     $mail->Body = "Nome: {$_POST['nome']}\nEmail: {$_POST['email']}\nMensagem:\n{$_POST['mensagem']}";
 
     $mail->send();
-    echo 'Mensagem enviada com sucesso!';
+    echo json_encode(["status" => "ok"]);
 } catch (Exception $e) {
-    echo 'Erro ao enviar: ', $mail->ErrorInfo;
+    echo json_encode(["status" => "error", "message" => $mail->ErrorInfo]);
 }
 ?>
