@@ -8,23 +8,21 @@ require 'phpmailer/src/SMTP.php';
 
 $mail = new PHPMailer(true);
 
-// Ativar debug detalhado
-$mail->SMTPDebug = 2; // Mostra mensagens de debug no navegador
-$mail->Debugoutput = 'html'; // Formata a saída em HTML
-
-
 try {
+    $mail->SMTPDebug = 2; // Ativar debug para ver logs
+    $mail->Debugoutput = 'html';
+
     $mail->isSMTP();
-    $mail->Host = 'smtp.iluminandofuturos.com.br';
+    $mail->Host = 'smtp.locaweb.com.br'; // teste com este host
     $mail->SMTPAuth = true;
-    $mail->Username = 'contato@iluminandofuturos.com.br'; // seu e-mail
-    $mail->Password = 'Acao2021@'; // senha definida
+    $mail->Username = 'contato@iluminandofuturos.com.br';
+    $mail->Password = 'Acao2021@'; // senha atual
     $mail->SMTPSecure = 'tls';
     $mail->Port = 587;
 
-    // remetente (quem preencheu o formulário)
-    $mail->setFrom($_POST['email'], $_POST['nome']);
-    // destinatário (sua caixa de entrada)
+    // remetente fixo
+    $mail->setFrom('contato@iluminandofuturos.com.br', 'Site Iluminando Futuros');
+    // destinatário
     $mail->addAddress('contato@iluminandofuturos.com.br');
     $mail->Subject = 'Novo contato do site';
     $mail->Body = "Nome: {$_POST['nome']}\nEmail: {$_POST['email']}\nMensagem:\n{$_POST['mensagem']}";
