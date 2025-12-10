@@ -149,24 +149,45 @@
           </div>
         </div>
 
-        <form id="form-contato" name="contato" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-          <!-- Campo oculto para Netlify identificar o formulário -->
-          <input type="hidden" name="form-name" value="contato">
-          <p style="display:none">
-            <label>Não preencha este campo: <input name="bot-field"></label>
-          </p>
+        <form id="form-contato" action="https://formsubmit.co/contato@iluminandofuturos.com.br" method="POST"
+          target="fs-iframe">
+          <!-- Configurações ocultas -->
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_autoresponse" value="Olá, obrigado por entrar em contato com a campanha Iluminando o Futuro!
+Recebemos sua mensagem e vamos respondê-la assim que possível.
+Agradecemos pela sua colaboração e por ajudar a levar alegria às crianças neste fim de ano.
+Atenciosamente,
+Equipe Ação Entre Amigos - Iluminando o Futuro">
+          <input type="hidden" name="_captcha" value="false">
 
-          <label for="nome">Nome</label>
-          <input type="text" id="nome" name="nome" required>
+          <label class="texto" for="nome">Nome:</label>
+          <input class="nome" type="text" id="nome" name="nome" placeholder="Digite seu nome" required><br><br>
 
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" required>
+          <label class="texto" for="email">E-mail:</label>
+          <input class="email" type="email" id="email" name="email" placeholder="seu@email.com" required><br><br>
 
-          <label for="mensagem">Mensagem</label>
-          <textarea id="mensagem" name="mensagem" required></textarea>
+          <label class="texto" for="telefone">Telefone:</label>
+          <input class="telefone" type="tel" id="telefone" name="telefone" placeholder="(xx) x xxxx-xxxx"
+            required><br><br>
 
-          <button type="submit">Enviar</button>
+          <label class="texto" for="mensagem">Mensagem:</label><br>
+          <textarea class="mensagem" id="mensagem" name="mensagem" required>
+Solicito coleta de brinquedos. Por favor informe data e ponto de encontro.
+</textarea><br><br>
+
+          <button class="botao" type="submit">Enviar</button>
         </form>
+
+        <!-- Iframe invisível para capturar resposta -->
+        <iframe name="fs-iframe" id="fs-iframe" style="display:none;"></iframe>
+
+        <!-- Popup de agradecimento -->
+        <div id="popup" aria-hidden="true">
+          <div class="content" role="dialog" aria-modal="true" aria-labelledby="popup-title">
+            <h3 id="popup-title">Obrigado!</h3>
+            <p>Recebemos sua mensagem com sucesso.</p>
+          </div>
+        </div>
 
 
       </div>
