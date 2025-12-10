@@ -1,4 +1,3 @@
-
 // Interações: copiar Pix, abrir formulário, atualizar ano
 document.addEventListener('DOMContentLoaded', function () {
   const copyBtns = [document.getElementById('btn-copy'), document.getElementById('btn-copy-2')];
@@ -20,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const btnOpenForm = document.getElementById('btn-open-form');
   const btnSolicitarColeta = document.getElementById('btn-solicitar-coleta');
   const scrollToForm = () => {
-    const form = document.querySelector('form[name="doacao"]');
+    const form = document.getElementById('form-contato');
     if (!form) return;
     form.scrollIntoView({ behavior: 'smooth', block: 'center' });
     const name = document.getElementById('nome'); if (name) name.focus();
@@ -32,38 +31,31 @@ document.addEventListener('DOMContentLoaded', function () {
     scrollToForm();
   });
 
-  // envio de formulário (EmailJS + SweetAlert2)
-  const form = document.querySelector('form[name="doacao"]');
-  if (form) {
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
+  // envio de formulário (FormSubmit + popup)
+  const form = document.getElementById('form-contato');
+  const iframe = document.getElementById('fs-iframe');
+  const popup = document.getElementById('popup');
 
-      const serviceID = "SEU_SERVICE_ID_AQUI";
-      const templateID = "SEU_TEMPLATE_ID_AQUI";
+  if (form && iframe && popup) {
+    // quando o iframe carregar (resposta do FormSubmit), mostramos o popup
+    iframe.addEventListener('load', function () {
+      form.reset();
+      popup.style.display = "flex";
+      popup.setAttribute('aria-hidden', 'false');
 
-      emailjs.sendForm(serviceID, templateID, form)
-        .then(() => {
-          Swal.fire({
-            title: 'Email enviado com sucesso!',
-            text: 'Obrigado pela sua doação. Entraremos em contato em breve.',
-            icon: 'success',
-            imageUrl: 'assets/ação-entre-amigo.png',
-            imageWidth: 80,
-            imageHeight: 80,
-            imageAlt: 'Logo da campanha',
-            confirmButtonText: 'Fechar'
-          });
-          form.reset();
-        })
-        .catch((err) => {
-          console.error("Erro:", err);
-          Swal.fire({
-            title: 'Erro!',
-            text: 'Não foi possível enviar. Tente novamente.',
-            icon: 'error',
-            confirmButtonText: 'Fechar'
-          });
-        });
+      // fecha sozinho em 5 segundos
+      setTimeout(() => {
+        popup.style.display = "none";
+        popup.setAttribute('aria-hidden', 'true');
+      }, 5000);
+    });
+
+    // fechar ao clicar fora
+    popup.addEventListener('click', function (e) {
+      if (e.target === popup) {
+        popup.style.display = "none";
+        popup.setAttribute('aria-hidden', 'true');
+      }
     });
   }
 
@@ -133,40 +125,4 @@ document.addEventListener('DOMContentLoaded', function () {
       alwaysShowNavOnTouchDevices: true
     });
   }
-});// Formulário de doação com popup
-document.addEventListener('DOMContentLoaded', function () {
-  const form = document.getElementById('form-doacao');
-  const popup = document.getElementById('popup');
-
-  if (form) {
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      fetch(form.action, {
-        method: "POST",
-        body: new FormData(form)
-      }).then(() => {
-        form.reset();
-
-        // mostra popup
-        popup.style.display = "flex";
-
-        // fecha sozinho em 5 segundos
-        setTimeout(() => {
-          popup.style.display = "none";
-        }, 5000);
-      });
-    });
-  }
-
-  // fechar ao clicar fora
-  if (popup) {
-    popup.addEventListener('click', function (e) {
-      if (e.target === popup) {
-        popup.style.display = "none";
-      }
-    });
-  }
 });
-
-
