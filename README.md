@@ -8,14 +8,6 @@
 
 🔗 Link: [https://iluminandofuturos.com.br/](https://iluminandofuturos.com.br/)
 
-
-
-
-
-  
-
-  
-
 ---
 
 ## 📝 Descrição em **PORTUGUÊS - BR**  
