@@ -210,41 +210,44 @@ body {
 .contact {
   padding: 2.25rem 0
 }
-
 .donate-grid {
-  display: grid;       /* em vez de bloco, vira grid */
-  max-width: 1000px;    /* aumenta a largura só dessa seção */
-  margin: 0 auto;       /* centraliza na página */
-  line-height: 1.6;     /* deixa o texto mais “respirado” */
+  display: block;        /* bloco único, sem grid */
+  max-width: 1000px;     /* largura confortável */
+  margin: 0 auto;        /* centraliza na página */
+  line-height: 1.6;      /* texto mais respirado */
 }
 
 .donate-item {
   background: #fff;
-  padding: 1.5rem;      /* um pouco mais de espaço interno */
+  padding: 1.5rem;       /* espaço interno */
   border-radius: 12px;
   box-shadow: 0 8px 22px rgba(0, 0, 0, 0.05);
-  margin-bottom: 20px;  /* espaço entre o bloco e o formulário */
+  margin-bottom: 20px;   /* espaço entre o bloco e o formulário */
 }
 
 .donate-item h4 {
   margin-top: 0;
   margin-bottom: 0.6rem;
-  font-size: 1.05rem
+  font-size: 1.1rem;     /* ligeiramente maior para destaque */
+  color: var(--primary); /* usa a cor principal */
 }
 
 .donate-item p {
-  margin-bottom: 0.9rem;
-  color: var(--muted)
+  margin-bottom: 1rem;
+  color: var(--muted);
 }
 
 .donate-item ul {
-  margin: 0.6rem 0 0.9rem 1.1rem;
-  padding-left: 0
+  margin: 1rem 0;        /* espaçamento em cima e embaixo */
+  padding-left: 1.2rem;  /* recuo padrão da lista */
+  list-style-position: outside; /* bullets alinhados para fora */
 }
 
 .donate-item ul li {
-  margin-bottom: 0.5rem
+  margin-bottom: 0.8rem; /* espaço entre itens */
+  line-height: 1.6;      /* leitura mais confortável */
 }
+
 
 form label {
   display: block;
