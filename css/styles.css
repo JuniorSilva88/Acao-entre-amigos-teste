@@ -212,17 +212,18 @@ body {
 }
 
 .donate-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.25rem
+  display: block;       /* em vez de grid, vira bloco */
+  max-width: 1000px;    /* aumenta a largura só dessa seção */
+  margin: 0 auto;       /* centraliza na página */
+  line-height: 1.6;     /* deixa o texto mais “respirado” */
 }
 
 .donate-item {
   background: #fff;
-  padding: 1.25rem;
+  padding: 1.5rem;      /* um pouco mais de espaço interno */
   border-radius: 12px;
   box-shadow: 0 8px 22px rgba(0, 0, 0, 0.05);
-  line-height: 1.6;
+  margin-bottom: 20px;  /* espaço entre o bloco e o formulário */
 }
 
 .donate-item h4 {

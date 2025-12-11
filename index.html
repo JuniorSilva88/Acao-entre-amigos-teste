@@ -106,11 +106,12 @@
 
     <section id="doe" class="container donate">
       <h3>Doações</h3>
+
       <div class="donate-grid">
         <div class="donate-item">
-          <h4>Doação de brinquedos (ampliado)</h4>
-          <p>Obrigado por querer participar! Veja abaixo orientações para que suas doações cheguem com segurança e
-            alegria às crianças:</p>
+          <!-- conteúdo explicativo da doação -->
+          <h4>Doação de brinquedos</h4>
+          <p>Obrigado por querer participar! Veja abaixo orientações...</p>
           <ul>
             <li><strong>Que tipo de brinquedos:</strong> brinquedos educativos, livros infantis, jogos de tabuleiro,
               bonecas, carrinhos e material esportivo.</li>
@@ -125,73 +126,50 @@
             <li><strong>Doação em grupo/empresa:</strong> se sua empresa quiser fazer uma arrecadação, podemos apoiar na
               logística e divulgação — entre em contato.</li>
           </ul>
-          <h5>Pontos de entrega</h5>
-          <p>Fique atento aos pontos de coleta oficiais que divulgaremos nas redes sociais e no e-mail de contato. Se
-            preferir, solicite coleta no link abaixo.</p>
-          <div class="toy-actions">
-            <button id="btn-solicitar-coleta"
-              onclick="document.getElementById('form-contato').scrollIntoView({ behavior: 'smooth' })">
-              Solicitar coleta
-            </button>
-
-            <button id="btn-show-qr" class="btn-link" type="button">Gerar QRCode</button>
-          </div>
-
-          <!-- QR modal (invisível por padrão) -->
-          <div id="qr-modal" class="qr-modal" role="dialog" aria-modal="true" aria-hidden="true" tabindex="-1" hidden>
-            <div class="qr-backdrop" data-close="true"></div>
-            <div class="qr-content" role="document">
-              <button id="btn-close-qr" class="qr-close" aria-label="Fechar">✕</button>
-              <h4>QRCode para Pix</h4>
-              <img src="assets/pix.PNG" alt="QRCode para Pix - 41995756812" decoding="async" loading="lazy">
-              <p>Escaneie para doar via Pix: <strong>41995756812</strong></p>
-            </div>
-          </div>
         </div>
+      </div>
 
-        <form id="form-contato" action="https://formsubmit.co/contato@iluminandofuturos.com.br" method="POST"
-          target="fs-iframe">
-          <!-- Configurações ocultas -->
-          <input type="hidden" name="_template" value="table">
-          <input type="hidden" name="_autoresponse" value="Olá, obrigado por entrar em contato com a campanha Iluminando o Futuro!
+      <!-- Formulário fora da grid, logo abaixo -->
+      <form id="form-contato" action="https://formsubmit.co/contato@iluminandofuturos.com.br" method="POST"
+        target="fs-iframe">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_autoresponse" value="Olá, obrigado por entrar em contato com a campanha Iluminando o Futuro!
 Recebemos sua mensagem e vamos respondê-la assim que possível.
 Agradecemos pela sua colaboração e por ajudar a levar alegria às crianças neste fim de ano.
 Atenciosamente,
 Equipe Ação Entre Amigos - Iluminando o Futuro">
-          <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_captcha" value="false">
 
-          <label class="texto" for="nome">Nome:</label>
-          <input class="nome" type="text" id="nome" name="nome" placeholder="Digite seu nome" required><br><br>
+        <label class="texto" for="nome">Nome:</label>
+        <input class="nome" type="text" id="nome" name="nome" placeholder="Digite seu nome" required><br><br>
 
-          <label class="texto" for="email">E-mail:</label>
-          <input class="email" type="email" id="email" name="email" placeholder="seu@email.com" required><br><br>
+        <label class="texto" for="email">E-mail:</label>
+        <input class="email" type="email" id="email" name="email" placeholder="seu@email.com" required><br><br>
 
-          <label class="texto" for="telefone">Telefone:</label>
-          <input class="telefone" type="tel" id="telefone" name="telefone" placeholder="(xx) x xxxx-xxxx"
-            required><br><br>
+        <label class="texto" for="telefone">Telefone:</label>
+        <input class="telefone" type="tel" id="telefone" name="telefone" placeholder="(xx) x xxxx-xxxx"
+          required><br><br>
 
-          <label class="texto" for="mensagem">Mensagem:</label><br>
-          <textarea class="mensagem" id="mensagem" name="mensagem" required>
+        <label class="texto" for="mensagem">Mensagem:</label><br>
+        <textarea class="mensagem" id="mensagem" name="mensagem" required>
 Solicito coleta de brinquedos. Por favor informe data e ponto de encontro.
-</textarea><br><br>
+    </textarea><br><br>
 
-          <button class="botao" type="submit">Enviar</button>
-        </form>
+        <button class="botao" type="submit">Enviar</button>
+      </form>
 
-        <!-- Iframe invisível para capturar resposta -->
-        <iframe name="fs-iframe" id="fs-iframe" style="display:none;"></iframe>
+      <!-- Iframe invisível para capturar resposta -->
+      <iframe name="fs-iframe" id="fs-iframe" style="display:none;"></iframe>
 
-        <!-- Popup de agradecimento -->
-        <div id="popup" aria-hidden="true">
-          <div class="content" role="dialog" aria-modal="true" aria-labelledby="popup-title">
-            <h3 id="popup-title">Obrigado!</h3>
-            <p>Recebemos sua mensagem com sucesso.</p>
-          </div>
+      <!-- Popup de agradecimento -->
+      <div id="popup" aria-hidden="true">
+        <div class="content" role="dialog" aria-modal="true" aria-labelledby="popup-title">
+          <h3 id="popup-title">Obrigado!</h3>
+          <p>Recebemos sua mensagem com sucesso.</p>
         </div>
-
-
       </div>
     </section>
+
 
     <section id="contato" class="container contact">
       <h3>Contato</h3>
