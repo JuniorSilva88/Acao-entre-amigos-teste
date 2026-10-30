@@ -50,8 +50,24 @@ O estilo do site foi projetado para ser simples, acolhedor e responsivo.
    ```bash
    git clone https://github.com/JuniorSilva88/Acao-entre-amigos-teste.git
    ```  
-2. Abra o arquivo `index.html` em um navegador.  
+2. Sirva a pasta por HTTP local (por exemplo, `python3 -m http.server 8000`) e acesse `http://localhost:8000`.
 3. Para deploy, utilize o **Netlify** ou outro serviço de hospedagem estática.  
+
+---
+
+## 🖼️ Gerenciar galerias
+
+1. Configure a autenticação HTTP da pasta `admin/` na Locaweb antes de publicar o painel:
+   - Crie um arquivo `.htpasswd` fora de `public_html`, com um usuário e uma senha forte (por exemplo, usando `htpasswd -B -c .htpasswd seu_usuario`).
+   - Envie o `.htpasswd` para essa área privada pelo FTP; não o coloque dentro de `public_html`.
+   - Edite `admin/.htaccess` e troque `/home/SEU_USUARIO/.htpasswd` pelo caminho absoluto do arquivo no servidor.
+   - Publique o arquivo `.htaccess` e acesse o painel apenas por HTTPS. O Apache solicitará as credenciais.
+   - Se já havia uma versão anterior do painel no servidor, confirme que `admin.html` foi substituído pelo redirecionamento para a pasta protegida `admin/`.
+2. Abra `https://iluminandofuturos.com.br/admin/` e informe o usuário e a senha configurados.
+3. Crie uma galeria, adicione ou remova fotos e ajuste o texto alternativo. As alterações ficam salvas no IndexedDB deste navegador.
+4. Clique em **Baixar galerias** e envie o arquivo `galleries.json` para `public_html/data/` via FTP para atualizar o site público.
+
+O painel local não publica alterações sozinho nem sincroniza entre navegadores. As fotos adicionadas são convertidas para WebP e incluídas no arquivo exportado. O servidor local simples usado no desenvolvimento não aplica `.htaccess`; a autenticação é aplicada pela hospedagem Apache.
 
 ---
 

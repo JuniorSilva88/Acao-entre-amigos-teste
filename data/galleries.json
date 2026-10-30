@@ -1,0 +1,38 @@
+[
+  {
+    "id": "momentos-da-acao",
+    "title": "Momentos da ação",
+    "images": [
+      {
+        "src": "assets/img1-800.jpg",
+        "fullSrc": "assets/img1-1200-800.webp",
+        "alt": "Voluntários reunidos em uma edição da ação"
+      },
+      {
+        "src": "assets/img2-800.jpg",
+        "fullSrc": "assets/img2-1200-800.webp",
+        "alt": "Registro de voluntários e crianças na ação"
+      },
+      {
+        "src": "assets/img3-800.jpg",
+        "fullSrc": "assets/img3-1200-800.webp",
+        "alt": "Equipe voluntária durante a campanha"
+      },
+      {
+        "src": "assets/img4-800.jpg",
+        "fullSrc": "assets/img4-1200-800.webp",
+        "alt": "Comunidade reunida para a ação solidária"
+      },
+      {
+        "src": "assets/img5-800.jpg",
+        "fullSrc": "assets/img5-1200-800.webp",
+        "alt": "Crianças e famílias recebendo apoio"
+      },
+      {
+        "src": "assets/img9-800.jpg",
+        "fullSrc": "assets/img9-1200-800.webp",
+        "alt": "Brinquedos preparados para doação"
+      }
+    ]
+  }
+]

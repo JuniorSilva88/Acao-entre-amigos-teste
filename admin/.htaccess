@@ -1,0 +1,7 @@
+Options -Indexes
+
+AuthType Basic
+AuthName "Administracao das galerias"
+AuthBasicProvider file
+AuthUserFile /home/iluminandofuturo1/.htpasswd
+Require valid-user

@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#155e43">
+  <title>Gerenciar galerias | Ação Entre Amigos</title>
+  <link rel="icon" href="../assets/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="admin.css">
+</head>
+
+<body class="admin-page">
+  <header class="site-header">
+    <div class="container header-inner admin-header">
+      <a class="brand" href="../index.html">
+        <img src="../assets/ação-entre-amigo.png" alt="">
+        <span><strong>Ação Entre Amigos</strong><small>Gerenciamento de galerias</small></span>
+      </a>
+      <a class="button button-outline" href="../index.html#galeria">Ver site</a>
+    </div>
+  </header>
+
+  <main class="container admin-main">
+    <div class="admin-intro">
+      <span class="hero-kicker">Administração protegida</span>
+      <h1>Gerenciar galerias</h1>
+      <p>Crie galerias, adicione fotos e organize as imagens do site.</p>
+    </div>
+
+    <div class="admin-notice" role="status" id="admin-status" aria-live="polite">
+      As alterações ficam salvas neste navegador. Para atualizar o site público, baixe o arquivo de galerias e envie-o
+      por FTP para a pasta <code>data/</code>.
+    </div>
+
+    <section class="admin-card" aria-labelledby="create-gallery-title">
+      <h2 id="create-gallery-title">Criar galeria</h2>
+      <form class="admin-inline-form" id="gallery-create-form">
+        <label class="sr-only" for="new-gallery-title">Nome da nova galeria</label>
+        <input id="new-gallery-title" name="title" type="text" maxlength="80"
+          placeholder="Ex.: Edição 2025" required>
+        <button class="button button-primary" type="submit">Criar galeria</button>
+      </form>
+    </section>
+
+    <section class="admin-card admin-gallery-editor" id="gallery-editor" aria-labelledby="gallery-editor-title" hidden>
+      <div class="admin-card-heading">
+        <div>
+          <h2 id="gallery-editor-title">Editar galeria</h2>
+          <p>Escolha uma galeria para alterar o nome ou as fotos.</p>
+        </div>
+        <label class="admin-gallery-picker">
+          <span class="sr-only">Galeria selecionada</span>
+          <select id="gallery-select"></select>
+        </label>
+      </div>
+
+      <form class="admin-inline-form admin-rename-form" id="gallery-rename-form">
+        <label class="sr-only" for="edit-gallery-title">Nome da galeria</label>
+        <input id="edit-gallery-title" name="title" type="text" maxlength="80" required>
+        <button class="button button-outline" type="submit">Salvar nome</button>
+        <button class="button button-danger" id="delete-gallery" type="button">Excluir galeria</button>
+      </form>
+
+      <div class="admin-upload">
+        <h3>Adicionar fotos</h3>
+        <p>As imagens são reduzidas e convertidas para WebP antes de serem salvas.</p>
+        <form class="admin-inline-form" id="image-upload-form">
+          <input id="image-files" name="images" type="file" accept="image/*" multiple required>
+          <label class="admin-file-input" for="image-files">Escolher imagens</label>
+          <button class="button button-primary" type="submit">Adicionar à galeria</button>
+        </form>
+      </div>
+
+      <div class="admin-image-section">
+        <h3>Fotos da galeria</h3>
+        <div class="admin-image-list" id="image-list"></div>
+      </div>
+    </section>
+
+    <section class="admin-card admin-publish" aria-labelledby="publish-title">
+      <div>
+        <h2 id="publish-title">Atualizar o site</h2>
+        <p>Exporte as galerias e envie o arquivo <code>galleries.json</code> para a pasta <code>data/</code> do site
+          pelo FTP.</p>
+      </div>
+      <div class="admin-publish-actions">
+        <button class="button button-primary" id="export-galleries" type="button">Baixar galerias</button>
+        <button class="button button-outline" id="restore-galleries" type="button">Descartar alterações locais</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="admin.js" defer></script>
+</body>
+
+</html>
