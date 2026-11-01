@@ -12,7 +12,7 @@
   <link rel="canonical" href="https://iluminandofuturos.com.br/">
   <meta property="og:title" content="Ação Entre Amigos — Iluminando o Futuro">
   <meta property="og:description" content="Sua colaboração pode transformar o fim de ano de uma criança.">
-  <meta property="og:image" content="https://iluminandofuturos.com.br/assets/hero-1200.jpg">
+  <meta property="og:image" content="https://iluminandofuturos.com.br/assets/img1-1200.jpg">
   <meta property="og:url" content="https://iluminandofuturos.com.br/">
   <meta property="og:type" content="website">
   <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css">
@@ -25,7 +25,7 @@
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="#inicio" aria-label="Ação Entre Amigos - início">
-        <img src="assets/ação-entre-amigo.png" alt="">
+        <img src="assets/acao-entre-amigos-160.webp" alt="">
         <span><strong>Ação Entre Amigos</strong><small>Iluminando o Futuros!</small></span>
       </a>
 
@@ -38,7 +38,7 @@
           <li><a href="#doe">Doações</a></li>
           <li><a href="#galeria">Galeria</a></li>
           <li><a href="#contato">Contato</a></li>
-          <li><a class="nav-cta" href="#doe"><span aria-hidden="true">♡</span> Doe Agora</a></li>
+          <li><a class="nav-cta" href="#doe" data-open-donation><span aria-hidden="true">♡</span> Doe Agora</a></li>
         </ul>
       </nav>
     </div>
@@ -53,18 +53,6 @@
           <p class="hero-description">Doe brinquedos ou Pix e ajude a levar alegria a muitas crianças neste fim de ano!
           </p>
 
-          <div class="hero-pix" id="doe">
-            <span class="pix-symbol" aria-hidden="true">◇</span>
-            <div class="hero-pix-details">
-              <span class="pix-label">Pix:</span>
-              <strong id="pix-value">41995756812</strong>
-              <small>Alécio Camargo</small>
-              <span class="copy-feedback" id="copy-feedback" role="status" aria-live="polite"></span>
-            </div>
-            <div class="hero-pix-actions">
-              <button class="button button-primary copy-button" id="btn-copy" type="button">Copiar Pix</button>
-              </div>
-          </div>
         </div>
       </div>
     </section>
@@ -82,7 +70,7 @@
           <strong class="about-highlight">Juntos, fazemos a diferença!</strong>
         </div>
         <div class="section-image">
-          <img src="assets/img9-1200-800.webp" alt="Mãe e criança preparando brinquedos para doação" loading="lazy">
+          <img src="assets/img9-1200.webp" alt="Mãe e criança preparando brinquedos para doação" loading="lazy">
         </div>
       </div>
     </section>
@@ -101,6 +89,77 @@
         <div class="gallery-grid" id="gallery-grid" aria-live="polite"></div>
       </div>
     </section>
+
+    <dialog class="donation-dialog" id="donation-dialog" aria-labelledby="donation-title">
+      <div class="donation-dialog-header">
+        <div>
+          <span class="eyebrow">Sua contribuição transforma</span>
+          <h2 id="donation-title">Como você quer ajudar?</h2>
+          <p>Escolha uma forma de participar da Ação Entre Amigos.</p>
+        </div>
+        <button class="donation-dialog-close" id="donation-dialog-close" type="button" aria-label="Fechar">×</button>
+      </div>
+
+      <div class="donation-methods" id="donation-methods">
+        <button class="donation-method-card" id="choose-pix-method" type="button" aria-expanded="false"
+          aria-controls="pix-donation-options">
+          <span class="donation-method-icon" aria-hidden="true">R$</span>
+          <span><strong>Doar via Pix</strong><small>Escolha o valor e gere seu QR Code.</small></span>
+          <span class="donation-method-arrow" aria-hidden="true">→</span>
+        </button>
+        <a class="donation-method-card" id="toy-donation-link" href="#contato">
+          <span class="donation-method-icon donation-toy-icon" aria-hidden="true">♡</span>
+          <span><strong>Doar brinquedos</strong><small>Fale com a equipe sobre um ponto de coleta.</small></span>
+          <span class="donation-method-arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <section class="pix-donation-options" id="pix-donation-options" aria-labelledby="pix-amount-title" hidden>
+        <h3 id="pix-amount-title">Escolha o valor da doação</h3>
+        <fieldset class="pix-amount-options">
+          <legend class="sr-only">Valor da doação via Pix</legend>
+          <label class="pix-amount-option">
+            <input type="radio" name="donation-amount" value="5">
+            <span>R$ 5,00</span>
+          </label>
+          <label class="pix-amount-option">
+            <input type="radio" name="donation-amount" value="10">
+            <span>R$ 10,00</span>
+          </label>
+          <label class="pix-amount-option">
+            <input type="radio" name="donation-amount" value="20">
+            <span>R$ 20,00</span>
+          </label>
+          <label class="pix-amount-option">
+            <input type="radio" name="donation-amount" value="50">
+            <span>R$ 50,00</span>
+          </label>
+          <label class="pix-amount-option pix-amount-custom">
+            <input type="radio" name="donation-amount" value="other">
+            <span>Outro valor</span>
+            <input id="custom-donation-amount" type="number" min="0.01" max="999999.99" step="0.01"
+              inputmode="decimal" placeholder="R$ 0,00" aria-label="Outro valor em reais" hidden>
+          </label>
+        </fieldset>
+        <button class="button button-primary pix-generate-button" id="generate-pix-qr" type="button" hidden>
+          Gerar QR Code Pix
+        </button>
+        <p class="donation-feedback" id="donation-feedback" role="status" aria-live="polite"></p>
+      </section>
+
+      <section class="pix-donation-result" id="pix-donation-result" aria-labelledby="pix-result-title"
+        aria-live="polite" hidden>
+        <h3 id="pix-result-title">Escaneie para doar</h3>
+        <p id="pix-result-amount"></p>
+        <img id="pix-qr-code" alt="" width="240" height="240">
+        <p class="pix-recipient">Recebedor: <strong>Alécio Camargo</strong> · Curitiba-PR</p>
+        <label class="pix-copy-label" for="pix-payment-code">Pix copia e cola</label>
+        <textarea id="pix-payment-code" rows="3" readonly></textarea>
+        <button class="button button-primary" id="copy-pix-payment-code" type="button">Copiar código Pix</button>
+        <p class="donation-security-note">Confira o nome do recebedor no aplicativo do seu banco antes de confirmar.</p>
+        <button class="donation-back-button" id="change-donation-amount" type="button">← Alterar valor</button>
+      </section>
+    </dialog>
 
     <dialog class="gallery-viewer" id="gallery-viewer" aria-label="Visualizador de fotos">
       <button class="gallery-viewer-close" id="gallery-viewer-close" type="button" aria-label="Fechar visualização">
@@ -124,15 +183,15 @@
           <p>Nosso agradecimento a quem apoia e fortalece essa iniciativa.</p>
         </div>
         <div class="partners-grid">
-          <div class="partner-card"><img src="assets/cgRefrigeracao.jpeg" alt="CG Refrigeração" loading="lazy"><span>CG
+          <div class="partner-card"><img src="assets/cgRefrigeracao-196.webp" alt="CG Refrigeração" loading="lazy"><span>CG
               Refrigeração</span></div>
-          <div class="partner-card"><img src="assets/arTecRefrigeracao.jpeg" alt="Artec Refrigeração"
+          <div class="partner-card"><img src="assets/arTecRefrigeracao-808.webp" alt="Artec Refrigeração"
               loading="lazy"><span>Artec Refrigeração</span></div>
-          <div class="partner-card"><img src="assets/neiDoVolei.jpeg" alt="Nei do Volei" loading="lazy"><span>Nei do
+          <div class="partner-card"><img src="assets/neiDoVolei-580.webp" alt="Nei do Volei" loading="lazy"><span>Nei do
               Volei</span></div>
-          <div class="partner-card"><img src="assets/c2ar.jpeg" alt="C2 Ar Condicionado" loading="lazy"><span>C2 Ar
+          <div class="partner-card"><img src="assets/c2ar-800.webp" alt="C2 Ar Condicionado" loading="lazy"><span>C2 Ar
               Condicionado</span></div>
-          <div class="partner-card"><img src="assets/casaDoFrentista.jpg" alt="Casa do Frentista"
+          <div class="partner-card"><img src="assets/casaDoFrentista-800.webp" alt="Casa do Frentista"
               loading="lazy"><span>Casa do Frentista</span></div>
         </div>
       </div>
@@ -199,7 +258,7 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <a class="footer-brand" href="#inicio">
-        <img src="assets/ação-entre-amigo.png" alt="">
+        <img src="assets/acao-entre-amigos-160.webp" alt="">
         <span><strong>Ação Entre Amigos</strong><small>Iluminando o Futuros!</small></span>
       </a>
       <div class="footer-meta">
@@ -222,6 +281,7 @@
     </div>
   </div>
 
+  <script src="js/pix-donation.js" defer></script>
   <script src="js/main.js" defer></script>
 </body>
 

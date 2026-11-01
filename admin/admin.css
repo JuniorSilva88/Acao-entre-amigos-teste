@@ -259,6 +259,11 @@
   font-size: .77rem;
 }
 
+.admin-publish-actions .button:disabled {
+  cursor: not-allowed;
+  opacity: .58;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;

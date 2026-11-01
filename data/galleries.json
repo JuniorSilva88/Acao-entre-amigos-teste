@@ -1,38 +1,43 @@
 [
-  {
-    "id": "momentos-da-acao",
-    "title": "Momentos da ação",
-    "images": [
-      {
-        "src": "assets/img1-800.jpg",
-        "fullSrc": "assets/img1-1200-800.webp",
-        "alt": "Voluntários reunidos em uma edição da ação"
-      },
-      {
-        "src": "assets/img2-800.jpg",
-        "fullSrc": "assets/img2-1200-800.webp",
-        "alt": "Registro de voluntários e crianças na ação"
-      },
-      {
-        "src": "assets/img3-800.jpg",
-        "fullSrc": "assets/img3-1200-800.webp",
-        "alt": "Equipe voluntária durante a campanha"
-      },
-      {
-        "src": "assets/img4-800.jpg",
-        "fullSrc": "assets/img4-1200-800.webp",
-        "alt": "Comunidade reunida para a ação solidária"
-      },
-      {
-        "src": "assets/img5-800.jpg",
-        "fullSrc": "assets/img5-1200-800.webp",
-        "alt": "Crianças e famílias recebendo apoio"
-      },
-      {
-        "src": "assets/img9-800.jpg",
-        "fullSrc": "assets/img9-1200-800.webp",
-        "alt": "Brinquedos preparados para doação"
-      }
-    ]
-  }
+    {
+        "id": "momentos-da-acao",
+        "title": "Edições Anteriores",
+        "images": [
+            {
+                "src": "assets/img1-800.webp",
+                "alt": "Voluntários reunidos em uma edição da ação",
+                "fullSrc": "assets/img1-1200.webp"
+            },
+            {
+                "src": "assets/img2-800.webp",
+                "alt": "Registro de voluntários e crianças na ação",
+                "fullSrc": "assets/img2-1200.webp"
+            },
+            {
+                "src": "assets/img3-800.webp",
+                "alt": "Equipe voluntária durante a campanha",
+                "fullSrc": "assets/img3-1200.webp"
+            },
+            {
+                "src": "assets/img4-800.webp",
+                "alt": "Comunidade reunida para a ação solidária",
+                "fullSrc": "assets/img4-1200.webp"
+            },
+            {
+                "src": "assets/img5-800.webp",
+                "alt": "Concentração da Equipe antes da Ação.",
+                "fullSrc": "assets/img5-1200.webp"
+            },
+            {
+                "src": "assets/img9-800.webp",
+                "alt": "Brinquedos preparados para doação",
+                "fullSrc": "assets/img9-1200.webp"
+            },
+            {
+                "src": "assets/gallery/gallery-890954f51274dd35f154614afebbe25d.webp",
+                "fullSrc": "assets/gallery/gallery-890954f51274dd35f154614afebbe25d.webp",
+                "alt": "Momento da Ação"
+            }
+        ]
+    }
 ]

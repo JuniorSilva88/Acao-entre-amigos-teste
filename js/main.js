@@ -35,6 +35,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const copyFeedback = document.getElementById('copy-feedback');
   const toast = document.getElementById('toast');
   let toastTimer;
+  const donationDialog = document.getElementById('donation-dialog');
+  const pixOptions = document.getElementById('pix-donation-options');
+  const pixResult = document.getElementById('pix-donation-result');
+  const pixMethodButton = document.getElementById('choose-pix-method');
+  const pixAmountInputs = donationDialog?.querySelectorAll('input[name="donation-amount"]') || [];
+  const customAmountInput = document.getElementById('custom-donation-amount');
+  const generatePixButton = document.getElementById('generate-pix-qr');
+  const donationFeedback = document.getElementById('donation-feedback');
+  const pixImage = document.getElementById('pix-qr-code');
+  const pixPaymentCode = document.getElementById('pix-payment-code');
+  let qrLibraryPromise;
 
   function showToast(message) {
     if (!toast) return;
@@ -44,25 +55,32 @@ document.addEventListener('DOMContentLoaded', () => {
     toastTimer = window.setTimeout(() => toast.classList.remove('show'), 2800);
   }
 
+  async function copyText(value) {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(value);
+      return;
+    }
+
+    const field = document.createElement('textarea');
+    field.value = value;
+    field.setAttribute('readonly', '');
+    field.style.position = 'fixed';
+    field.style.opacity = '0';
+    document.body.appendChild(field);
+    try {
+      field.select();
+      if (!document.execCommand('copy')) throw new Error('Cópia não disponível');
+    } finally {
+      field.remove();
+    }
+  }
+
   async function copyPix() {
     const value = pixValue?.textContent.trim();
     if (!value) return;
 
     try {
-      if (navigator.clipboard && window.isSecureContext) {
-        await navigator.clipboard.writeText(value);
-      } else {
-        const field = document.createElement('textarea');
-        field.value = value;
-        field.setAttribute('readonly', '');
-        field.style.position = 'fixed';
-        field.style.opacity = '0';
-        document.body.appendChild(field);
-        field.select();
-        const copied = document.execCommand('copy');
-        field.remove();
-        if (!copied) throw new Error('Cópia não disponível');
-      }
+      await copyText(value);
 
       if (copyFeedback) copyFeedback.textContent = 'Chave Pix copiada.';
       if (copyButton) {
@@ -79,6 +97,157 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (copyButton) copyButton.addEventListener('click', copyPix);
+
+  function selectedDonationAmount() {
+    const selected = Array.from(pixAmountInputs).find(input => input.checked);
+    if (!selected) return null;
+    return selected.value === 'other' ? customAmountInput.valueAsNumber : Number(selected.value);
+  }
+
+  function updateDonationAmount() {
+    const selected = Array.from(pixAmountInputs).find(input => input.checked);
+    const isCustom = selected?.value === 'other';
+    if (customAmountInput) customAmountInput.hidden = !isCustom;
+    pixAmountInputs.forEach(input => {
+      input.closest('.pix-amount-option')?.classList.toggle('is-selected', input.checked);
+    });
+
+    const amount = selectedDonationAmount();
+    const isValid = Number.isFinite(amount) && amount >= 0.01 && amount <= 999999.99 &&
+      Math.abs(amount * 100 - Math.round(amount * 100)) < 0.000001;
+    if (generatePixButton) generatePixButton.hidden = !isValid;
+    if (pixResult) pixResult.hidden = true;
+    if (donationFeedback) donationFeedback.textContent = '';
+  }
+
+  function openDonationDialog() {
+    if (!donationDialog) return;
+    pixOptions.hidden = true;
+    pixResult.hidden = true;
+    pixMethodButton.setAttribute('aria-expanded', 'false');
+    pixAmountInputs.forEach(input => { input.checked = false; });
+    if (customAmountInput) customAmountInput.value = '';
+    if (donationFeedback) donationFeedback.textContent = '';
+    if (generatePixButton) {
+      generatePixButton.hidden = true;
+      generatePixButton.disabled = false;
+      generatePixButton.textContent = 'Gerar QR Code Pix';
+    }
+    updateDonationAmount();
+    donationDialog.showModal();
+  }
+
+  function loadQrLibrary() {
+    if (typeof window.qrcode === 'function') return Promise.resolve();
+    if (qrLibraryPromise) return qrLibraryPromise;
+
+    qrLibraryPromise = new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = 'js/vendor/qrcode-generator.js';
+      script.async = true;
+      script.onload = () => {
+        if (typeof window.qrcode === 'function') {
+          resolve();
+        } else {
+          qrLibraryPromise = null;
+          reject(new Error('Não foi possível iniciar o gerador de QR Code.'));
+        }
+      };
+      script.onerror = () => {
+        qrLibraryPromise = null;
+        reject(new Error('Não foi possível carregar o gerador de QR Code. Tente novamente.'));
+      };
+      document.head.append(script);
+    });
+    return qrLibraryPromise;
+  }
+
+  document.querySelectorAll('[data-open-donation]').forEach(button => {
+    button.addEventListener('click', event => {
+      event.preventDefault();
+      openDonationDialog();
+    });
+  });
+
+  pixMethodButton?.addEventListener('click', () => {
+    pixOptions.hidden = false;
+    pixMethodButton.setAttribute('aria-expanded', 'true');
+  });
+
+  pixAmountInputs.forEach(input => input.addEventListener('change', () => {
+    updateDonationAmount();
+    if (input.value === 'other') customAmountInput?.focus();
+  }));
+  customAmountInput?.addEventListener('input', updateDonationAmount);
+
+  document.getElementById('donation-dialog-close')?.addEventListener('click', () => donationDialog.close());
+  document.getElementById('toy-donation-link')?.addEventListener('click', () => donationDialog.close());
+  donationDialog?.addEventListener('click', event => {
+    if (event.target === donationDialog) donationDialog.close();
+  });
+
+  generatePixButton?.addEventListener('click', async () => {
+    const amount = selectedDonationAmount();
+    if (!Number.isFinite(amount) || amount < 0.01 || amount > 999999.99) return;
+
+    generatePixButton.disabled = true;
+    generatePixButton.setAttribute('aria-busy', 'true');
+    generatePixButton.textContent = 'Gerando QR Code…';
+    if (donationFeedback) donationFeedback.textContent = '';
+
+    try {
+      const digits = pixValue?.textContent.trim().replace(/\D/g, '') || '';
+      const key = digits.startsWith('55') && digits.length === 13
+        ? `+${digits}`
+        : digits.length === 11
+          ? `+55${digits}`
+          : '';
+      const paymentCode = window.PixDonation.buildPayload(
+        amount,
+        key,
+        document.getElementById('doe').dataset.pixRecipient,
+        document.getElementById('doe').dataset.pixCity
+      );
+
+      await loadQrLibrary();
+      const qr = window.qrcode(0, 'M');
+      qr.addData(paymentCode, 'Byte');
+      qr.make();
+      pixImage.src = qr.createDataURL(6, 4);
+      pixImage.alt = `QR Code Pix para doação de ${new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL'
+      }).format(amount)}`;
+      pixPaymentCode.value = paymentCode;
+      document.getElementById('pix-result-amount').textContent =
+        `Valor: ${new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(amount)}`;
+      pixResult.hidden = false;
+    } catch (error) {
+      if (donationFeedback) donationFeedback.textContent = error.message;
+    } finally {
+      generatePixButton.disabled = false;
+      generatePixButton.removeAttribute('aria-busy');
+      generatePixButton.textContent = 'Gerar QR Code Pix';
+    }
+  });
+
+  document.getElementById('copy-pix-payment-code')?.addEventListener('click', async () => {
+    if (!pixPaymentCode?.value) return;
+    try {
+      await copyText(pixPaymentCode.value);
+      showToast('Código Pix copiado. Confira o recebedor antes de confirmar.');
+    } catch {
+      showToast('Não foi possível copiar. Selecione e copie o código Pix.');
+      pixPaymentCode.focus();
+      pixPaymentCode.select();
+    }
+  });
+
+  document.getElementById('change-donation-amount')?.addEventListener('click', () => {
+    pixResult.hidden = true;
+    pixOptions.hidden = false;
+    pixMethodButton.setAttribute('aria-expanded', 'true');
+  });
 
   document.querySelectorAll('[data-contact="coleta"]').forEach(button => {
     button.addEventListener('click', () => {
@@ -224,7 +393,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (event.key === 'ArrowRight') moveGalleryImage(1);
     });
 
-    fetch('data/galleries.json')
+    fetch('data/galleries.json', { cache: 'no-store' })
       .then(response => {
         if (!response.ok) throw new Error(`Não foi possível carregar as galerias (${response.status}).`);
         return response.json();

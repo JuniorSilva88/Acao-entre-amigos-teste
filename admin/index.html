@@ -15,7 +15,7 @@
   <header class="site-header">
     <div class="container header-inner admin-header">
       <a class="brand" href="../index.html">
-        <img src="../assets/ação-entre-amigo.png" alt="">
+        <img src="../assets/acao-entre-amigos-160.webp" alt="">
         <span><strong>Ação Entre Amigos</strong><small>Gerenciamento de galerias</small></span>
       </a>
       <a class="button button-outline" href="../index.html#galeria">Ver site</a>
@@ -30,8 +30,8 @@
     </div>
 
     <div class="admin-notice" role="status" id="admin-status" aria-live="polite">
-      As alterações ficam salvas neste navegador. Para atualizar o site público, baixe o arquivo de galerias e envie-o
-      por FTP para a pasta <code>data/</code>.
+      As alterações ficam salvas como rascunho neste navegador. Use “Publicar no site” para atualizar as galerias
+      públicas.
     </div>
 
     <section class="admin-card" aria-labelledby="create-gallery-title">
@@ -82,11 +82,11 @@
     <section class="admin-card admin-publish" aria-labelledby="publish-title">
       <div>
         <h2 id="publish-title">Atualizar o site</h2>
-        <p>Exporte as galerias e envie o arquivo <code>galleries.json</code> para a pasta <code>data/</code> do site
-          pelo FTP.</p>
+        <p>Publique as galerias e imagens neste servidor. A exportação continua disponível como cópia de segurança.</p>
       </div>
       <div class="admin-publish-actions">
-        <button class="button button-primary" id="export-galleries" type="button">Baixar galerias</button>
+        <button class="button button-primary" id="publish-galleries" type="button">Publicar no site</button>
+        <button class="button button-outline" id="export-galleries" type="button">Baixar galerias</button>
         <button class="button button-outline" id="restore-galleries" type="button">Descartar alterações locais</button>
       </div>
     </section>

@@ -51,23 +51,19 @@ O estilo do site foi projetado para ser simples, acolhedor e responsivo.
    git clone https://github.com/JuniorSilva88/Acao-entre-amigos-teste.git
    ```  
 2. Sirva a pasta por HTTP local (por exemplo, `python3 -m http.server 8000`) e acesse `http://localhost:8000`.
-3. Para deploy, utilize o **Netlify** ou outro serviço de hospedagem estática.  
+3. Para publicar galerias pelo painel, use uma hospedagem com **Apache e PHP**; serviços estáticos como Netlify não executam a API.
 
 ---
 
 ## 🖼️ Gerenciar galerias
 
-1. Configure a autenticação HTTP da pasta `admin/` na Locaweb antes de publicar o painel:
-   - Crie um arquivo `.htpasswd` fora de `public_html`, com um usuário e uma senha forte (por exemplo, usando `htpasswd -B -c .htpasswd seu_usuario`).
-   - Envie o `.htpasswd` para essa área privada pelo FTP; não o coloque dentro de `public_html`.
-   - Edite `admin/.htaccess` e troque `/home/SEU_USUARIO/.htpasswd` pelo caminho absoluto do arquivo no servidor.
-   - Publique o arquivo `.htaccess` e acesse o painel apenas por HTTPS. O Apache solicitará as credenciais.
-   - Se já havia uma versão anterior do painel no servidor, confirme que `admin.html` foi substituído pelo redirecionamento para a pasta protegida `admin/`.
-2. Abra `https://iluminandofuturos.com.br/admin/` e informe o usuário e a senha configurados.
-3. Crie uma galeria, adicione ou remova fotos e ajuste o texto alternativo. As alterações ficam salvas no IndexedDB deste navegador.
-4. Clique em **Baixar galerias** e envie o arquivo `galleries.json` para `public_html/data/` via FTP para atualizar o site público.
+O painel envia as imagens e publica `data/galleries.json` pela API PHP protegida. Consulte o [guia de instalação, permissões e checklist da Locaweb](./.github/docs/publicacao-galerias-locaweb.md) antes de ativar a publicação no servidor.
 
-O painel local não publica alterações sozinho nem sincroniza entre navegadores. As fotos adicionadas são convertidas para WebP e incluídas no arquivo exportado. O servidor local simples usado no desenvolvimento não aplica `.htaccess`; a autenticação é aplicada pela hospedagem Apache.
+O painel continua mantendo rascunhos no IndexedDB deste navegador e oferece exportação JSON como cópia de segurança. A API exige a autenticação HTTP Basic já configurada em `admin/.htaccess`; acesse o painel apenas por HTTPS.
+
+## 💚 Doações
+
+O botão **Doe Agora** abre as opções para contribuir via Pix ou doar brinquedos. No Pix, o visitante escolhe um valor ou informa outro, e o site gera localmente um QR Code e o código Pix copia e cola para a chave cadastrada. O gerador de QR Code é carregado sob demanda; sua licença MIT está em `js/vendor/LICENSE-qrcode-generator.txt`.
 
 ---
 
