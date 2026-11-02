@@ -50,8 +50,20 @@ O estilo do site foi projetado para ser simples, acolhedor e responsivo.
    ```bash
    git clone https://github.com/JuniorSilva88/Acao-entre-amigos-teste.git
    ```  
-2. Abra o arquivo `index.html` em um navegador.  
-3. Para deploy, utilize o **Netlify** ou outro serviço de hospedagem estática.  
+2. Sirva a pasta por HTTP local (por exemplo, `python3 -m http.server 8000`) e acesse `http://localhost:8000`.
+3. Para publicar galerias pelo painel, use uma hospedagem com **Apache e PHP**; serviços estáticos como Netlify não executam a API.
+
+---
+
+## 🖼️ Gerenciar galerias
+
+O painel envia as imagens e publica `data/galleries.json` pela API PHP protegida. Consulte o [guia de instalação, permissões e checklist da Locaweb](./.github/docs/publicacao-galerias-locaweb.md) antes de ativar a publicação no servidor.
+
+O painel continua mantendo rascunhos no IndexedDB deste navegador e oferece exportação JSON como cópia de segurança. A API exige a autenticação HTTP Basic já configurada em `admin/.htaccess`; acesse o painel apenas por HTTPS.
+
+## 💚 Doações
+
+O botão **Doe Agora** abre as opções para contribuir via Pix ou doar brinquedos. No Pix, o visitante escolhe um valor ou informa outro, e o site gera localmente um QR Code e o código Pix copia e cola para a chave cadastrada. O gerador de QR Code é carregado sob demanda; sua licença MIT está em `js/vendor/LICENSE-qrcode-generator.txt`.
 
 ---
 
