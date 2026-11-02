@@ -197,16 +197,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     try {
       const digits = pixValue?.textContent.trim().replace(/\D/g, '') || '';
-      const key = digits.startsWith('55') && digits.length === 13
+      const key = digits.startsWith('55') && [12, 13].includes(digits.length)
         ? `+${digits}`
-        : digits.length === 11
+        : [10, 11].includes(digits.length)
           ? `+55${digits}`
           : '';
       const paymentCode = window.PixDonation.buildPayload(
         amount,
         key,
-        document.getElementById('doe').dataset.pixRecipient,
-        document.getElementById('doe').dataset.pixCity
+        donationDialog.dataset.pixRecipient,
+        donationDialog.dataset.pixCity
       );
 
       await loadQrLibrary();

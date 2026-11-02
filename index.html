@@ -16,8 +16,7 @@
   <meta property="og:url" content="https://iluminandofuturos.com.br/">
   <meta property="og:type" content="website">
   <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css">
-  <link rel="stylesheet"
-    href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
+  <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 
@@ -62,7 +61,7 @@
         <div class="section-copy">
           <h2>Sobre a iniciativa</h2>
           <p>A Ação Entre Amigos é uma iniciativa solidária que reúne pessoas e empresas com o mesmo propósito: </p>
-            <p>Levar mais alegria para crianças em situação de vulnerabilidade social.</p>
+          <p>Levar mais alegria para crianças em situação de vulnerabilidade social.</p>
           <p>A cada ano, conseguimos arrecadar brinquedos e doações via Pix para montar kits e distribuir em
             instituições
             e comunidades que mais precisam.</p>
@@ -90,7 +89,11 @@
       </div>
     </section>
 
-    <dialog class="donation-dialog" id="donation-dialog" aria-labelledby="donation-title">
+    <dialog class="donation-dialog" id="donation-dialog" aria-labelledby="donation-title"
+      data-pix-recipient="ALECIO CAMARGO" data-pix-city="CURITIBA">
+
+      <span id="pix-value" hidden>+554195756812</span>
+
       <div class="donation-dialog-header">
         <div>
           <span class="eyebrow">Sua contribuição transforma</span>
@@ -137,8 +140,8 @@
           <label class="pix-amount-option pix-amount-custom">
             <input type="radio" name="donation-amount" value="other">
             <span>Outro valor</span>
-            <input id="custom-donation-amount" type="number" min="0.01" max="999999.99" step="0.01"
-              inputmode="decimal" placeholder="R$ 0,00" aria-label="Outro valor em reais" hidden>
+            <input id="custom-donation-amount" type="number" min="0.01" max="999999.99" step="0.01" inputmode="decimal"
+              placeholder="R$ 0,00" aria-label="Outro valor em reais" hidden>
           </label>
         </fieldset>
         <button class="button button-primary pix-generate-button" id="generate-pix-qr" type="button" hidden>
@@ -183,7 +186,8 @@
           <p>Nosso agradecimento a quem apoia e fortalece essa iniciativa.</p>
         </div>
         <div class="partners-grid">
-          <div class="partner-card"><img src="assets/cgRefrigeracao-196.webp" alt="CG Refrigeração" loading="lazy"><span>CG
+          <div class="partner-card"><img src="assets/cgRefrigeracao-196.webp" alt="CG Refrigeração"
+              loading="lazy"><span>CG
               Refrigeração</span></div>
           <div class="partner-card"><img src="assets/arTecRefrigeracao-808.webp" alt="Artec Refrigeração"
               loading="lazy"><span>Artec Refrigeração</span></div>
@@ -220,7 +224,7 @@
               <span class="contact-action-icon" aria-hidden="true"><i class="fi fi-rr-envelope"></i></span>
               <span><strong>Formulário</strong></span>
             </summary>
-            <form id="form-contato" action="https://formsubmit.co/contato@iluminandofuturos.com.br" method="POST"
+            <form id="form-contato" action="https://formsubmit.co/dac5763b1f8ba9a7a44abeb1924e9e8d" method="POST"
               target="fs-iframe">
               <input type="hidden" name="_template" value="table">
               <input type="hidden" name="_subject" value="Contato pelo site Iluminando o Futuro">
@@ -263,8 +267,8 @@
       </a>
       <div class="footer-meta">
         <small>© <span id="year"></span> Ação Entre Amigos - Todos os direitos reservados</small>
-        <small>Feito por <a href="https://github.com/JuniorSilva88" target="_blank"
-            rel="noopener noreferrer">Junior Silva</a></small>
+        <small>Feito por <a href="https://github.com/JuniorSilva88" target="_blank" rel="noopener noreferrer">Junior
+            Silva</a></small>
         <small><a href="admin/">Área administrativa</a></small>
       </div>
       <a class="footer-top" href="#inicio">Voltar ao topo <span aria-hidden="true">↑</span></a>

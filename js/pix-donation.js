@@ -25,8 +25,7 @@
       cents < 1 ||
       cents > 99999999 ||
       Math.abs(amount - cents / 100) > 0.000001 ||
-      !/^\+55\d{11}$/.test(key)
-    ) {
+      ! /^\+55\d{10,11}$/.test(key)) {
       throw new Error('Informe um valor válido e confira a chave Pix.');
     }
 
